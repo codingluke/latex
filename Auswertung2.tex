@@ -148,12 +148,12 @@ $W_{\n{mech}}$ aus der Simulation & [kW]  &       1,64 &       2,57 &       1,32
 \end{table}
 Diese Werte sind erfahrungsgemäß zu gering.
 %Diese derart niedrigen Leistungen sind nicht nur mit der Ungenauigkeit der Werte zu erklären, sondern auch damit,
-In den Gleichungen die Cycletempo verwendet, werden die Temperaturdifferenzen zur Berechnung der Enthalpiedifferenz genutzt. Da die Ströme vor und nach der Pumpe eine sehr geringe Temperaturdifferenz aufweisen, sind auch die Enthalpiedifferenzen gering. 
+In den Gleichungen die Cycle-Tempo verwendet, werden die Temperaturdifferenzen zur Berechnung der Enthalpiedifferenz genutzt. Da die Ströme vor und nach der Pumpe eine sehr geringe Temperaturdifferenz aufweisen, sind auch die Enthalpiedifferenzen gering. 
 Da wie in Gleichung \ref{pumpe} erkennbar, die Enthalpiedifferenz ausschlaggebend für die benötigte Leistung ist, ergibt sich ein zu niedriger Wert.
 Ebenfalls ist durch die zu kleine Enthalpiedifferenz die Berechnung für die Entropieerzeugung zu niedrig, wodurch die gesamte Entropieerzeugung zu niedrig ausfällt. 
 Deswegen sollte in folgenden Simulationen mit Cycle-Tempo darauf geachtet werden, dass der Temperaturunterschied höher wird. Es könnte eine weitere Komponente eingebaut werden, um dies zu erreichen.
 
-Das Programm Cycletempo arbeitet mit einer hohen Genauigkeit. Es ist nicht möglich die Ergebnisse in der gleichen Genauigkeit dem Programm zu entnehmen. Es gelingt nur eine Genauigkeit von bis zu drei Nachkommastellen. Die voneinander anbweichenden Werte für  $W_{\n{mech}}$ aus der Simulation und aus den Berechnungen begründen sich damit. 
+Das Programm Cycle-Tempo arbeitet mit einer hohen Genauigkeit. Es ist nicht möglich die Ergebnisse in der gleichen Genauigkeit dem Programm zu entnehmen. Es gelingt nur eine Genauigkeit von bis zu drei Nachkommastellen. Die voneinander anbweichenden Werte für  $W_{\n{mech}}$ aus der Simulation und aus den Berechnungen begründen sich damit. 
 Da in allen Prozessen die gleiche Problematik auftaucht, ist dennoch die Vergleichbarkeit gegeben. 
 
 %%%%
@@ -200,7 +200,7 @@ Ein Beispiel dafür ist die Annahme in dem Prozess, den Collier vorgestellt hat. 
 	\label{pic.tsangelino}
 \end{minipage}
 \end{figure}
-Wird auf die Annahme des gleichen Generatorverhältnisses verzichtet, also 73,38\% im Wasserkreislauf und 26,62\% für den Generator im Kaliumkreislauf, kann die Simulation wie folgt geändert werden. In die HD-Kaliumturbine gehen 43,47\% des Massenstroms aus dem Kaliumdampferzeuger ein. Damit ergibt sich ein Dampfgehalt von 88,67\% . Der energetische Wirkungsgrad wird auf 47,62\% angehoben. Der exergetische Wirkungsgrad verändert sich mit der ersten Berechnung von 44,41\% auf 44,40\% und in der zweiten Berechnung von 42,12\% auf 42,14\% . Dieser Prozess hat Potential sowohl energetisch als auch exergetisch verbessert zu werden. \par
+Wird auf die Annahme des gleichen Generatorverhältnisses verzichtet, also 73,38\% im Wasserkreislauf und 26,62\% für den Generator im Kaliumkreislauf, kann die Simulation wie folgt geändert werden. In die HD-Kaliumturbine gehen 43,47\% des Massenstroms aus dem Kaliumdampferzeuger ein. Damit ergibt sich ein Dampfgehalt von 88,67\% . Der energetische Wirkungsgrad wird auf 47,62\% angehoben. Der exergetische Wirkungsgrad verändert sich mit der ersten Berechnung von 44,41\% auf 44,40\% und in der zweiten Berechnung von 42,12\% auf 42,14\%. Dieser Prozess hat Potential sowohl energetisch als auch exergetisch verbessert zu werden. \par
 Für alle Prozesse gilt, dass sowohl bei der internen Wärmerückgewinnung, bei den Vorwärmern im Wasserkreislauf und bei der Niederdruckvorwärmung noch Möglichkeiten der Verbesserung bestehen. Für die Vorwärmung könnten mehr Wärmeübertrager eingesetzt werden, damit in jedem eine geringere Wärmemenge übertragen werden muss und damit die Exergievernichtung in den einzelnen Komponenten sinkt. 
 \begin{figure}
 \begin{minipage}[hbt]{0.48\textwidth}
