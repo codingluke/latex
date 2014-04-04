@@ -1,0 +1,75 @@
+\chapter{Simulationen}
+
+\section{Simulationssoftware}
+Das Computerprogramm mit dem die, im folgenden beschriebenen Prozesse simuliert werden, nennt sich Cycle-Tempo. Cycle-Tempo wurde von der TU Delft und TNO als Werkzeug für die thermodynamische Analyse und Optimierung von Energiesystemen entwickelt.
+Die Energiesysteme, die mit dieser Software berechnet werden, bestehen aus unterschiedlichen Komponenten, wie Turbinen, Wärmetauscher, Pumpen, Kompressoren, Ventile etc. 
+Diese Vorrichtungen sind miteinander direkt durch Leitungen verbunden, was zu einem komplexen Netzwerk von Massen- und Energieströmen führt. 
+Das Hauptmerkmal von Cycle-Tempo ist die Berechnung aller relevanten Stoff- und Energieströme im System. 
+Es handelt sich um ein grafisches Programm, so dass alle im Weiteren veranschaulichten Prozessbilder aus der Simulationssoftware stammen. 
+%Die Gleichungen die Cycle-Tempo nutzt um die Berechnungen für das Arbeitsmeidum Kalium durchzuführen, kommen 
+Stoffdaten für Kalium sind aus dem Buch ``Sodium-NaK Engineering Handbook'' von O. J. Foust extrahiert \cite[S.55]{sodium}.  \par
+
+\section{Simulation}
+Um die Prozesse miteinander vergleichbar zu machen, wurden Annahmen getroffen, die in jedem Prozess gleich sind.
+Die Umgebungsbedingungen sind wie in der Tabelle \ref{tab.umgeb}  dargestellt, angenommen.
+\begin{table}[htbp]
+\caption{Umgebungsbediungungen}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Temperatur  & [°C] & 15  \\ 
+\hline
+Druck & [bar] & 1 \\
+\hline
+$h_\n{0}^\n{W}$ &[kJ/kg]	&63,08\\
+\hline
+$s_\n{0}^\n{W}$ &[kJ/kgK]&0,2245	\\
+\hline
+$h_\n{0}^\n{K}$ &[kJ/kg]	&173,38\\
+\hline
+$s_\n{0}^\n{K}$ &[kJ/kgK]&1,6034	\\
+\hline
+%$\sum_{\n{j}}\dot{E}_{\n{D,j}}$ [MW] & 154,48 & 193,62  \\ 
+%\hline
+
+\end{tabular}
+\end{center}
+
+\label{tab.umgeb}
+\end{table}
+In den Untersuchungen von Lojewski und Urban wird angenommen, dass die Nettoleistung bei 316,1\,MW liegt und der Wirkungsgrad der Gesamtanlage bei 50,1\,\%. Durch diese Annahme werden die Wirkungsgrade der einzelnen Komponenten angepasst. Diese Wirkungsgrade werden in jeder Simulation verwendet. Der Eigenbedarf liegt in dem von Lojewski entworfenen Prozess bei 15,5\,MW.
+Somit kann festgehalten werden, dass jeder Prozess eine Nettoleistung von 316,1\,MW, einen Eigenbedarf von 15,5\,MW, die gleiche Kohle und die gleichen Wirkungsgrade in den einzelnen Komponenten aufweist. 
+Im Prozess von Lojewski und Angelino konnte auch die obere Prozesstemperatur und damit auch der Druck gehalten werden. Die Begründung der Wahl genau dieser Parameter sind in Abschnitt \ref{angelino} erfasst. In dem Prozess, der von Collier entwickelt wurde, musste aus Gründen, die in Abschnitt \ref{collier} zu finden sind, die Prozesstemperatur erhöht werden. 
+Die maximale Kühlwasseraustrittstemperatur beträgt 24,8\,°C. Die Kondensatorgrädigkeit liegt bei $\Delta$T=5\,K. 
+ \subsection{Simulation nach Lojewski}
+
+ \begin{figure}
+\centering 
+\includegraphics[width=\textwidth]{Bilder/lojewskisim}
+\caption{Blockschaltbild von Lojewski} 
+\label{pic.lojewskisimu}
+\end{figure}
+ Da der Prozess in Abbildung \ref{pic.lojewskisimu} als Referenzprozess gilt, gibt es nur geringe Abweichungen in der Simulation zu dem in Absatz \ref{lojew} beschriebenen Prozess. 
+Die Gesamtwärmezufuhr von 600\,MW bei den Parametern konnte erreicht werden. Der Eigenbedarf, die Generatorleisung und der Wirkungsgrad sind identisch. Es wurde keine fünfstufige Turbinenentwässerung sondern nur eine zweifache simuliert. Die Endnässe der Turbinen ist mit 91,37\% nicht zu groß. 
+
+ \subsection{Simulation nach Collier}
+\begin{figure}
+\centering 
+\includegraphics[angle=90, height=\textheight]{Bilder/colliersim}
+%width=\textwidth]{Bilder/colliersim}
+\caption{Blockschaltbild von Collier} 
+\label{pic.colliersimu}
+\end{figure}
+ In der Abbildung \ref{pic.colliersimu} ist der simulierte Gesamtprozess nach Collier abgebildet. Einige Veränderungen um die Vergleichbarkeit der Prozesse zu gewährleisten, mussten gemacht werden. Dadurch ist der Gesamtwirkungsgrad, den Collier anstrebte vermutlich nicht erreicht werden. Der Grund für diese Verschlechterung liegt darin, dass die Wärmezufuhr und auch die abgegebene Leistung um ein hohes Maß verringert wurde. Alle Prozesse haben eine Nettoleistung von 331,6\,MW. Es wurde das gleiche Generatorverhältnis angenommen, sodass im Kaliumprozess eine Leistung von 88,26\,MW und im Wasserkreislauf eine Leistung von 242,33\,MW abgegeben wird. Um dieses Verhältnis einhalten zu können, musste die obere Prozesstemperatur des Wasserkreislaufes angepasst werden, sodass die von Collier geforderten 450\,°C zu 371,8\,°C werden. Es ergibt sich in der Simulation die geforderte Wärmezufuhr. Die obere Prozesstemperatur des Kaliumkreislaufs von 930\,°C wird, wie nach Collier gefordert simuliert und damit ergibt sich der geforderte Druck von 2,07\,bar. Es werden anstelle von vier Wärmeübertragern nur zwei simuliert.  
+Die Überhitzung von 50\,°C wird nicht eingehalten. 
+
+
+\subsection{Simulation nach Angelino} 
+\begin{figure}
+\centering 
+\includegraphics[angle=90, height=\textheight]{Bilder/angelinoa0}
+\caption{Blockschaltbild von Angelino} 
+\label{pic.angelinosim}
+\end{figure}
+Der simulierte Prozess unterscheidet sich nur geringfügig von dem, den Angelino in seiner Forschung betrachtet. Der höchste Druck im Wasserdampfkreislauf ist geringer, nicht 290\,bar, sondern nur 216\,bar. Die obere Prozesstemperatur des Wasserkreislaufes kann ebenfalls nicht eingehalten werden. Sie liegt in der Simulation nur bei 535\,°C anstelle von 550\,°C. Der Kaliumkreislauf hat nach den Turbinen nicht genug Abwärme um den Wasserkreislauf auf die gewünschte Temperatur zu überhitzen.
+Ein weiterer Unterschied zwischen dem simulierten und dem vorgeschlagenen Prozess liegt darin, dass die Kondensation des Wassers bei einer höheren Temperatur stattfindet. Diese Veränderung rührt daher, dass der von Lojewski vorgeschlagene Wasserkeislauf als Referenz für alle drei Kreisläufe genutzt wurde. Lojewski lässt das Wasser bei einer Temperatur von 30\,°C kondensieren. Die Kondensationstemperatur, sowie die Turbinenleistung von Kalium wird übernommen. Der Abbildung \ref{pic.angelinosimu} sind weitere Parameter zu entnehmen. 

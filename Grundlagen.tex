@@ -1,0 +1,518 @@
+\chapter{Grundlagen} \label{Grundlagen}
+
+Dieses Kapitel erklärt die notwendigen Grundlagen der Arbeit. 
+Es wird auf die Grundlagen des im folgenden verwendeten Kreisprozesses, dem Clausius-Ranikine-Prozesses, eingegangen. Es wird erläutert, 
+warum Kalium als Arbeitsmittel gewählt wurde und im Anschluss wird die Methodik der Exergieanalyse beschrieben.
+
+\section{Kreisläufe}
+\subsection{Carnot}
+Der "`Carnot-Faktor"' ist elementar für alle Wärmekraftanlagen und dient als Vergleichsmethode des Wirkungsgrades von Kreisläufem. 
+Der Carnot-Prozess hat zwei isotherme und zwei isentrope Zustandsänderungen. Verlaufen alle 
+Zustandsänderungen im Nassdampfgebiet, dann handelt es sich um einen Dampfprozess. Da es sich um einen theoretischen Prozess handelt, kann dieser auch für ideale Gase ohne Dampfkurven verwendet werden.  
+Der energetische Wirkungsgrad ergibt sich aus: \cite[S.\,173]{Thermoscript}
+\begin{align}
+     \eta_{\n{carnot,i}} \ &=\ \left(1-\frac{T_\n{c}}{T_{\n{h}}}\right)\ \label{eq.Carnot}
+ \end{align}
+und wird auch als "`Carnot-Faktor"' bezeichnet. Da der Carnot-Prozess reversibel betachtet wird, handelt es sich um einen idealen Prozess. Ist die Wärmeabfuhr im gleichen Temperaturbereich wie die Umgebung, ist der exergetische Wirkungsgrad des Prozesses bei 100\,\%. Werden Irreversibilitäten in Betracht gezogen, ändert sich der Wirkungsgrad. Nach folgender Gleichung (\ref{eq.Carnot,r}) kann der energetische Wirkungsgrad berechnet werden. %Dier Wirkungsgrad glit nicht nur für einen Kreisprozess nach Carnot, sondern für alle rechtslaufenden Wärmekraftanlagen. 
+\begin{align}
+     \eta_{\n{r}} \ &=\ \frac{\dot{W}_\n{net}}{\dot{Q}_\n{ein}}\ \label{eq.Carnot,r}
+ \end{align}
+ %steht in Sauderson
+Mit dieser Gleichung können rechtslaufende Kreisprozesse und Wärmekraftanlagen berechnet werden. 
+\subsection{Clausius-Rankine-Prozess}\label{CRKL}
+
+Der Clausius-Rankine-Prozess stellt einen der wichtigsten rechtslaufenden Prozesse dar.
+%in der Industrie dar.
+Als Grundversion wird der vereinfachte Prozess dargestellt. 
+Im ersten Schritt wird das Arbeitsmedium verdichtet. In einem Wärmeübertrager wird es erwärmt, 
+verdampft und überhitzt, um dann in einer Turbine entspannt zu werden. In einem Kondensator wird das 
+Fluid kondensiert, um wieder verdichtet zu werden. Damit ist der Kreislauf geschlossen. 
+Oft wird als Arbeitsmedium Wasser gewählt, sodass sich die Arbeitsschritte folgendermaßen darstellen 
+lassen \cite[S.\,182]{Thermoscript}:
+
+\begin{figure}[h!]
+ \centering
+  \includegraphics[height=0.25\textheight]{Bilder/CRP2}
+  \caption{Clausius-Rankine-Prozess} 
+  \label{pic.CRP}
+\end{figure}
+
+\begin{tabbing}
+\hspace{2cm} \= \kill 
+1 $\longrightarrow$ 2		     \>	Isentrope Verdichtung des Speisewassers in der Speisewasserpumpe\\ \\
+2 $\longrightarrow$ 3		     \>	Isobare Erwärmung, Verdampfung und Überhitzung des Arbeitsmediums\\ \\
+3 $\longrightarrow$ 4		     \>	Isentrope Entspannung des überhitzten Dampfes in der Dampfturbine\\ \\
+4 $\longrightarrow$ 1		     \>	Isobare Kondensation des  austretenden Dampfes				
+\end{tabbing}
+
+Die abgegebene Nettoarbeit wird bei einem solchen Prozess als Nutzen definiert. 
+Der Aufwand für die energetische Betrachtung dieses Prozesses stellt die zugeführte Wärmemenge 
+$\dot{Q}_{\n{23}}$ dar.
+Der energetische Wirkungsgrad lässt sich damit durch
+\begin{align}
+     \eta_{\n{CRP}} \ &=\ \left(\frac{\vert\dot{W}_\n{12}+\dot{W}_\n{34}\vert}{\dot{Q}_{\n{23}}}\right)\ 
+     \label{CRP}
+ \end{align}
+beschreiben. %Der exergetische Wirkungsgrad unterscheidet sich nur in der Betrachtung des Aufwandes,%da hier der Exergiestrom verwendet wird. %\begin{align} %    \varepsilon_{\n{CRP}} \ &=\\left(\frac{\dot{W}_\n{12}+\dot{W}_\n{34}}{\dot{E}_{\n{q,23}}}\right)\ \label{CRPe}
+ %\end{align}%Damit wird sich herausstellen, dass der exergetische Wirkungsgrad eines Clausius-Rankine-Prozesses immer größer ist als der energetische. Dies ist damit zu erklären, dass der zugeführte Exergiestrom $\dot{E}_{\n{q,23}}$ kleiner ist als der zugeführte Wärmestrom $\dot{Q}_{\n{23}}$. % Ob ein unter- oder überkritischer Prozess betrachtet wird, macht keinen Unterschied bei der Berechnung des Wirkungsgrades, solange die Wärmezufuhr oberhalb des kritischen Drucks erflogt.
+Der einfache Clausius-Rankine-Prozess kann optimiert werden,%weißt einen verhältnismäßig schlechten Wirkungsgrad auf,
+ weswegen in technischen Anlagen erweiterte Varianten realisiert werden, um den Wirkungsgrad zu verbessern.
+\subsubsection{Erweiterungen}
+Auf einige, in der Simulation auch verwendete Erweiterungen wird im Folgenden eingegangen:
+\begin{enumerate}
+\item Zwischenüberhitzung:\par
+Der Dampf wird nur bis zu einem bestimmten Druck entspannt, um eine Zwischenüberhitzung durchzuführen 
+und den Dampf in einer zweiten Turbine bis zum Kondensatordruck zu entspannen. Der Vorteil 
+dieser Vorgehensweise liegt darin, dass die Turbine am Ausgang einen höheren Dampfgehalt hat. Ein 
+Mindestdampfgehalt von ca. 90-85\% ist auf Grund des Turbinendesign einzuhalten
+\cite[S.\,184]{Thermoscript}.
+\item Regenerative Speisewasservorwärmung:\par
+Die Turbine wird angezapft um%Es wird eine Anzapfung der Turbine unternommen um
+ thermische Energie zu nutzen, die das 
+Speisewasser nach der Verdichtung, also vor der Erhitzung, vorheizen soll. Der Dampf kann in einen oder mehrere Wärmeübertrager geleitet werden. Hierbei muss abgewegt werden, ob es sinnvoll ist den Massenstrom der Turbine und damit die Leistung zu verringern, um weniger
+Energie bei der Dampferzeugung zuführen zu müssen \cite[S.\,184]{Thermoscript}.
+\item Zweifachdampfprozess:\par
+Bei einem Zweifachdampfprozess werden zwei Dampfkreisläufe miteinander verschaltet. Die 
+Kondensationswärme oder auch Abwärme des oberen Prozesses liefert die Verdampfungswärme des 
+unteren Prozesses.
+Hierbei kann die obere Prozesstemperatur angehoben werden und damit, wie nach Formel \ref{eq.Carnot} 
+ersichtlich ist, auch der Wirkungsgrad der Gesamtanlage erhöht werden. 
+Aus welchen Gründen bei einem Wasserkreislauf die obere Prozesstemperatur nicht weiter angehoben 
+werden kann, wird im nächsten Abschnitt \ref{Stoffe} erläutert. 
+\end{enumerate}
+
+\section{Stoffe}\label{Stoffe}
+In diesem Abschnitt wird darauf eingegangen, 
+welche Stoffe für einen Zweifachdampfkreislauf in Frage kommen und welche Probleme auftauchen, 
+wenn man versuchen würde die Prozesstemperatur zu erhöhen, um den Wirkungsgrad zu steigern ohne ein 
+anderes Medium als Wasser zu verwenden.
+
+\subsection{Wasser}\label{wasser}
+Der heutige Stand der Technik zeigt, dass es Kraftwerke mit Frischdampfparametern bis zu ca. 600\,°C gibt. 
+Das Kaftwerk ... in Asien wurde ... realisiert und erreicht Dampftemperaturen von 610\,°C  \cite{IEAn}.%evtl mehr dazu schreiben
+%Es wurde ein Kraftwerk in Asien erbaut, welches Temperaturen von 610\,°C hat. \cite{IEAn}
+
+Aus der  Gleichung (\ref{eq.Carnot}) ergibt sich, dass die Anhebung der oberen Prozesstemperatur eine Verbesserung des Wirkungsgrades mit sich bringt. 
+Der Grund, dass die Temperaturen nicht ohne weiteres bei Wasserdampfprozessen
+angehoben werden können, liegt an der Entstehung von Korrosion in den Rohren. 
+Wasser beginnt bei Temperaturen oberhalb von 600\,°C zu dissoziieren. Wasserstoff beginnt durch die Wände der Dampferzeuger zu diffundieren. Der Sauerstoff greift die Stahloberfläche an, sodass auf der Wasserseite Korrosion zu einem ernsten Problem wird. \cite[S.53]{Fraas1973}
+Aufgrund dieser Tatsache herrschen erhöhte Anforderungen an das Material bezüglich des 
+Verhaltens gegenüber Spannungen und Temperaturen. \par
+In einem Bericht von H. Spliethoff über Dampfkraftwerke für Strom-und Wärmeerzeugung geht hervor, dass damit zu rechnen ist, dass bei einer Verbesserung der Materialien Temperaturen von bis zu 
+700\,°C bei 300\,bar zu erreichen sind. Damit würde der Wirkungsgrad der Gesamtanlage auf bis zu ca. 48\,\%
+steigen. Mit der Verbesserung einzelner Komponenten kann auf einen Wirkungsgrad von 50\,\%  erzielt werden \cite[S.208]{steampower}.
+Nach Lojewski sind der Anhebung der Prozesstemperatur in einem Wasserkreislauf aus wirtschaftlichem Grund Grenzen gesetzt \cite[S.79]{lojewski}.
+
+
+Um die obere Prozesstemperatur zu erhöhen und damit den Wirkungsgrad weiter zu steigern, formuliert Collier \cite[S.565]{Collier1974} Anforderungen an die Eigenschaften eines Stoffes im Rankinekreislauf:
+ \begin{enumerate}
+ \item die kritische Temperatur sollte hoch genug sein damit die Verdampfungswärme bei maximaler Temperatur zugeführt werden kann,
+ \item die latente Verdampfungswärme sollte groß und die spezifische Wärme klein sein, damit die zu bereitstellende Wärme klein ist, die das Fluid zum Siedepunkt bringt. Das spezifische Volumen des Dampfes sollte nicht zu groß sein,
+ %The latent heat of vaporization should be large and the specific heat small so that the heat supplied to rise the liquid to the boiling point is small.
+%The specific volume of the vapor should be not to great.
+ \item der Dampfdruck bei der höchsten Betriebstemperatur sollte klein sein, damit das Problem der Spannung und Lecken nicht auftaucht,
+ \item die Dampfkurve sollte so sein, dass bei der Entspannung in der Turbine das Fluid nicht übermäßig feucht wird und zuvor nicht übermäßig überhitzt,
+ \item die physikalischen Eigenschaften sollten so sein, dass eine hohe Wärmeübertragung bei niedrigen Temperaturdifferenzen möglich ist,
+ \item Chemische Stabilität und Strahlungsstabilität sollten gegeben sein. 
+\end{enumerate}
+Desweiteren spielen die toxischen Eigenschaften, für den sicheren Umgang und die Entsorgung des Stoffes eine wichtige Rolle. Weitere Kriterien sind die Wirtschaftlichkeit und ausreichende Vorkommen. 
+Viele der geforderten Eigenschaften weißt Wasser auf. Sobald das Temperaturniveau angehoben wird, wird Wasser instabil und spaltet sich in die Komponenten Sauerstoff und Wasserstoff auf.  %(s.h.oben). 
+Aus diesem Grund wurde in der Vergangenheit versucht Stoffe zu finden, die mit diesem Temperaturniveau umgehen können \cite{Collier1974}.
+Der erste Stoff mit dem dies versucht wurde ist Quecksilber. 
+
+\subsection{Quecksilber} \label{quecksilber}
+Quecksilber wäre eine ideale Lösung, da bei Drücken von ca. 0,1\,bar Temperaturen mit Dampfeigenschaften erreicht werden. Es gibt in den Vereinigten Staaten erbaute Kraftwerke, die einen doppelten Dampfkreislauf mit Quecksilber und Wasser haben.
+In den Jahren 1925 -\,1948 wurden diese gebaut und führten zu einer Steigerung des Wirkungsgrades. Die Prozesstemperatur 
+konnte gegenüber den in der Zeit vorhandenen Wasserdampfkraftwerken erhöht werden. Durch die technischen Fortschritte vor allem in der Materialforschung wird heute Quecksilber in Kaftwerken nicht mehr verwendet. Mit Quecksilber konnten Spitzentemperaturen von bis zu 500\,°C erreicht werden  
+\cite[S. 103]{rajakovics}.
+Zu dem kommt hinzu, dass Quecksilber
+einen schlechten Wärmeübergang hat, und damit bei der Wärmeübertragung von dem Quecksilberkreislauf auf 
+den Wasserkreislauf Verluste entstehen \cite[S.355]{Fraas1966}. Die weiteren Stoffeigenschaften sprechen
+ebenfalls gegen 
+die Verwendung von Quecksilber, da es toxisch ist und demnach die Entsorgung des Fluids schwer und teuer
+ sein würde. Auch ist Quecksilber auf der Welt nur limitiert vorhanden und damit in der Beschaffung 
+ teuer.
+
+\subsection{Alkalimetalle}
+Die weitere Forschung überprüfte Ersatzstoffe für Quecksilber auf ihere Eignung.
+Es wurden Fluide gesucht, die bei hohen Temperaturen geringe Drücke aufweisen und damit für 
+einen doppelten Dampfprozess in Frage kommen. Die von Fraas untersuchten Fluide wie Diphenyle, Schwefel und andere sind bis auf die Alkalimetalle als Ersatzstoffe ungeeignet, da sie bei den benötigten Temperaturen korrosiv sind \cite[S.355]{Fraas1966}.
+
+Alkalimetalle sind Elemente der 1. Hauptgruppe des Periodensystems. Chemische Elemente wie Lithium, Natrium, Kalium, Rubidium, Caesium und Francium zählen darunter.
+Nach Saunderson und Budimann sollen die am besten geeigneten Alkalimetalle Kalium und Lithium sein. 
+Der Grund dafür ist die gute Wärmekapazität und die niedrigen Dampfdrücke \cite[S.570]{sauderson}.
+Rajakovics sagt, dass nur als Arbeitsmedium Caesium und Kalium in Frage kommen, wobei aber Caesium wegen des hohen Preises für die industrieelle Nutzung ausscheidet \cite[S.104]{rajakovics}.
+Es liegen umfangreiche Erfahrungswerte im Umgang mit Natrium in anderen industrieellen Bereichen vor.  Natrium ist nicht für Zweifachdampfkreisläufe nicht geeignet. Natrium hat einen viel zu kleinen Dampfdruck bei den relevanten Temperaturen, sodass der untere Dampfprozess mit Wasser nicht erhitzt werden kann. 
+Kalium ein größeres molekulares Gewicht und die kleinere Entspannungsarbeit erlaubt ein einfacheres Design für die Turbinen im Dampfkreislauf \cite[S.200]{Angelino2006}.
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[height=0.3\textheight]{Bilder/angelinoo1}
+  \caption{Dampfdrücke in Abhängigkeit der Temperatur für einige Alkalimetalle \cite[S.640]{Angelino2008}} 
+  %angelino 2008
+  \label{pic.angelino1}
+\end{figure}
+
+Vergleicht man die möglichen Materialien miteinander, haben Quecksilber, Rubidium und Caesium den höchsten Dampfdruck. Unterschiedliche Dampfdrücke in Abhängigkeit zur Temperatur sind in der Abbildung \ref{pic.angelino1} dargestellt. Ein hoher Dampfdruck ist von Vorteil, da die mögliche Druckdifferenz in der Turbine und damit auch die Leistung der Turbine hoch ist. Wegen in Absatz \ref{quecksilber} beschriebenen Gründen fällt Quecksilber aus der Betrachtung. Caesium und Rubium sind nach Fraas sowohl zu teuer als auch schwer zu beschaffen \cite[S.355]{Fraas1966}.
+%Somit wird nach einer Alternative gesucht. Werden einige Kompromisse eingegangen, fällt auf, dass Kalium ein geeignetes Fluid für den oberen Kreislauf darstellt. 
+
+Zwei Fluide werden von Angelino und Invernizzi in Betracht gezogen:\par
+\begin{itemize}
+\item Cäsium: als Option eines Fluides mit dem höheren Dampfdruck
+\item Kalium: als das beste Medium aufgrund von guten Eigenschaften, Verfügbarkeit und Wirtschaftlichkeit
+\end{itemize}
+
+In dieser Arbeit wird Kalium als Arbeitsmedium betrachtet.
+
+\subsection{Kalium}\label{kalium}
+
+Kalium als Arbeitsmittel stellt einen Kompromiss zwischen Wirtschaftlichkeit, Umweltfaktoren und Fluideigenschaften dar. 
+Kalium ist im Vergleich zu den anderen Alkalimetallen relativ günstig, es ist nicht toxisch oder radioaktiv.
+Kalium hat ähnliche Eigenschaften wie Wasser aber in höheren Temperaturbereichen.
+In der folgenden Tabelle \ref{tab.Kalium} sind die Stoffeigenschaften von Kalium abgebildet. 
+\begin{table}[htb]\label{tab.Kalium}
+ \caption{Stoffeigenschaften Kalium}
+	\centering 
+	
+	%nist http://webbook.nist.gov/cgi/inchi/InChI%3D1S/K
+\begin{tabular}{|l|c|c|c|}
+
+\hline
+Molekulares Gewicht&[g/mol] &39,0983 & \cite{stoff} \\%
+\hline
+Schmelztemperatur&[°C] &       63,38 & \cite{stoff} \\%
+\hline
+Siedetemperatur bei Umgebungsdruck&[°C] &        759 & \cite{stoff} \\%
+\hline
+Verdampfungstemperatur bei 0,02\,bar&[°C] &        470 & \cite{Angelino2006}\\
+\hline
+Verdampfungstemperatur bei 20\,bar&[°C] &      127,3 & \cite{Angelino2006}\\
+\hline
+Wärmeleitfähigkeit&[W $\n{m^{-1}} \n{K^{-1}}$] & 100  & \cite{stoff}\\%
+\hline
+Kritische Temeratur&[°C] &       1950 & \cite{stoff}\\%
+\hline
+Kritischer Druck&[bar] &        167 & \cite{Angelino2006}\\
+\hline
+Siededruck bei oberer Prozesstemperatur 850°\,C&[bar] & 2,24 & \cite{lojewski}\\
+\hline
+\end{tabular}  
+ 
+\end{table}
+
+Im Folgenden sollen die geforderten Eigenschaften von Collier in Abschnitt \ref{wasser} mit den Eigenschaften von Kalium überprüft werden. 
+\begin{enumerate}
+ \item Die kritische Temperatur von Kalium (1900\,°C) ist hoch genug. Die Verdampfungewärme kann bei maximaler Temperatur zugeführt werden.
+%??? \item Die latente Verdampfungswärme sollte groß und die spezifische Wärme klein sein, damit die zu bereitstellende Wärme klein ist, die das Fluid zum Siedepunkt bringt. Das spezifische Volumen des Dampfes sollte nicht zu groß sein.
+\item Die Verdampfungswärme ist groß im Vergleich zu der Enthalpieveränderung. Das ist in der Abbildung \ref{pic.angelino.D} zu erkennen, da die Dampfkurve steil ist \cite[S.197]{Angelino2006}.
+ %The latent heat of vaporization should be large and the specific heat small so that the heat supplied to rise the liquid to the boiling point is small.
+%The specific volume of the vapor should be not to great.
+ \item Der Dampfdruck bei der höchsten Betriebstemperatur liegt, wie in Tabelle \ref{tab.Kalium} dargestellt bei 2,24\,bar und ist damit klein genug. Kalium ist um einiges weniger korrosiv als Quecksilber und es benetzt Edelstahloberflächen gut \cite[S.355]{Fraas1966}.
+ \begin{figure}[h!]
+ \centering
+ \includegraphics[height=0.2\textheight]{Bilder/angelinoDa}
+  \caption{Nassdampfgebiete verschiedener Fluide in T,s-Diagramm\cite[S.197]{Angelino2006}} 
+  %angelino 2008
+  \label{pic.angelino.D}
+\end{figure}
+ \item Die Dampfkurve ist in Abbildung \ref{pic.angelino.D} im Vergleich zu Wasser und weiteren Alkalimetallen dargestellt. Kalium wird demnach nicht übermäßig feucht und überhitzt auch nicht übermäßig. Dennoch ist die Feuchte der Turbine durch das Design der Turbine genauer zu betrachten. Wasser hat bei einer Eingangstemperatur von 300°\,C eine Endfeuchte von ca. 85\,\%. Bei Kalium ist mit einer Endfeuchte von 72,9\,\% - 73,9\,\% zu rechnen, wenn die Eingangsparameter zwischen 850°\,C und 400°\,C liegen \cite[S.202]{Angelino2006}.
+ \item Collier beschreibt Wasser für die Wärmeübertragungseigenschaften im einphasigen Bereich als gut und im siedenden Bereich als ausgezeichnet. Kalium bekommt beide Male die Eigenschaft ausgezeichnet zugesprochen \cite[S.565]{Collier1974}. Die physikalischen Eigenschaften von Kalium bei Temperaturen von 815°\,C werden als ähnlich zu denen von Wasser bei 115°\,C beschrieben \cite[S.355]{Fraas1966}.
+ \item Chemische Stabilität und Strahlungsstabilität sind gegeben, aber  es brennt, wenn es in Verbindung mit Luft kommt. Es reagiert sehr schnell mit Wasser, wenn es bei niedrigen Drücken vorliegt. Die Reaktionsrate ist aber nicht zu hoch, wenn es bei Temperaturen oberhalb von 315\,°C vorliegt. Dennoch sollte bei der Auslegung des Kaliumkondensators darauf Rücksicht genommen werden.
+\end{enumerate}
+
+
+%Kalium hat zwar einen niedriegeren Dampfdruck als Cäsium und Rubidium, aber dennoch ist der Dampfdruck dieses Alkalimetalls noch ausreichend. Die Abbildung \ref{pic.angelino1} stellt die Dampfdrücke über die Temperatur undterschiedlicher Alkalimetalle dar. 
+
+Große Teile der experimentellen Forschung, die für Kalium zur Verfügung stehen, sind vor allem der industriellen Tätigkeit in der Kernenergie sowie in der Raumfahrt entstanden. 
+Schnelle Brutreaktoren werden von einer flüssigen Alkalimetal-Schleife abgekühlt. 
+Kalium wurde als das beste Arbeitsmedium für nukleare oder solardynamische Raumkraft anerkannt. In den USA und in der ehemaligen UdSSR wurden dynamische Schlaufen aus einem Kessel und einer Turbine im Langzeiteinsätzen [7, 8] betrieben. In den USA wurde ein Kaliumsystem aus rostfreiem Stahl für 16 000\,h mit praktisch keiner Korrosion betrieben \cite[S.199]{Angelino}.
+Es gibt zudem auch Kalium-Turbinen, die ausprobiert wurden und 15000\,h erfolgreich gelaufen sind(840\,°C bei 500-600\,MW).
+Es gibt Werkstoffe z.B. Incoloy 800H (1.4876), die bei 850\,°C und 2,24\,bar Kalium beherrschbar machen.
+Es muss darauf hingewiesen werden, dass Kalium ein Flüssigmetall ist und bei einer Temperatur von 63\,°C erstarrt. Darauf muss beim Einfüllen beziehungsweise beim Abfüllen des Kaliums Rücksicht genommen werden \cite[S.79]{Lojewski1989}.
+Um nocheinmal auf die Materialen zu sprechen zu kommen, hat Angelino erwähnt, dass die auftretende Korrosion bei Kalium bei 870\,°C(2\,bar) niedriger ist als bei Wasserdampf bei Temperaturen von 540\,°C.
+
+
+%\par
+%??? Fluide mit der höchsten kritsischen Temperatur zeigen die besten Eigenschaften hinsichtlich des Vorheizens im Vergleich zu dem Hitze die benötigt wird für die Verdampfung bei tieferen Temperaturen.???\par
+
+
+\section{Exergieanalyse}
+Die Exergieanalyse ist neben der Energieanalyse ein weiteres Konzept um Energieumwandlungsanlagen zu bewerten. Die Definition der Exergie lautet: "`Die Exergie eines Systems ist die maximal theoretische Nutzarbeit, die erhalten wird, wenn das System ins vollständige thermische, mechanische und chemische Gleichgewicht mit der thermodynamischen Umgebung gebracht wird und es dabei Wechselwirkungen nur mit dieser Umgebung gibt. "' \cite[S.\,34]{ET}
+Exergie wird aufgeteilt in die physikalische, chemische, kinetische und in die potentielle Exergie eines Systems. \cite[S.\,154]{Thermoscript}
+
+\begin{align}
+E_{\n{Sys}}\ &= E_{\n{Sys}}^{\n{PH}}+ E^{\n{KN}}+E^{\n{PT}}+E^{\n{CH}} \label{ex.sys}
+\end{align}
+
+Im weiteren Verlauf der Arbeit wird es hauptsächlich um Stoffströme gehen, welche in Komponenten ein- und austreten. Die Exergie eines Stoffstroms wird ähnlich wie die des Systems in die physikalische und chemische aufgeteilt. Im Folgenden wird nicht weiter auf die chemische, potentielle und kinetische Exergie eingegangen, da das System im potentiellen und kinetischen Gleichgewicht mit der Umgebung steht. Die chemische Exergie bei der Kohleverbrennung wird gesondert berachtet, sodass vereinfachend $\dot{E}$ für physikalische Exergieströme stehen wird. 
+
+\begin{align}
+\dot{E} \ &= \dot{m}\, \left((h-h_\n{0}) - T_0(s-s_\n{0})  \right) \label{ex.strom}
+\end{align}
+
+Um die Exergie in einem offenen, stationären System um die Systemgrenze zu bilanzieren, kann 
+
+\begin{align}
+0 \ &= \ \sum_{j} \dot{E}_{\n{q},j} - \dot{W}_{\n{cv}} + \sum_{\n{ein}} \dot{E}_{\mathrm{ein}} - \sum_{\n{aus}} \dot{E}_{\mathrm{aus}} - \dot{E}_{\n {D}} \label{eq.exbilanz}
+\end{align}
+verwendet werden. Hierbei soll $\dot{E}_{\n{q},j}$ der mit dem Wärmestrom verbundene Exergiestrom bezeichnet werden, $\dot{W}_{\n{cv}}$ soll für die "`control volume"' Leistung, also die Volumenänderungsarbeit stehen. $\dot{E}_{\mathrm{ein}}$ und $\dot{E}_{\mathrm{aus}}$ stellen die Ein- und Ausgangsströme dar. 
+Bei $\dot{E}_{\n {D}}$ handelt es sich um den Exergievernichtungsstrom. Dieser Strom steht folgendermaßen in Zusammenhang mit dem Entropieerzeugungsstrom:
+\begin{align}
+\dot{E}_{\n{D}} \ &= \ T_\n{0}\ \dot{S}_{\n{gen}}\label{ed}
+\end{align}
+$E_{\n {D}}$ ist die Exergievernichtung, die sobald Irreversibilitäten in einem System aufzufinden sind, entsteht. 
+Zu der Berechnung von $\dot{E}_{\n{q},j}$ muss gesagt werden, dass $T_j$ die Temperatur an der Systemgrenze darstellt und $T_0$ die der Umgebung. 
+
+\begin{align}
+\dot{E}_{\n{q},j} \ &= \ \left(1-\frac{T_\n{0}}{T_j}\right)\ \dot{Q}_j \label{eq.Eq}
+\end{align}
+
+Um theoretisch darzustellen, wie die Exergieanalyse einzelner Komponenten durchgeführt werden kann, ist die Definition von den Exergieströmen $\dot{E}_{P}$ und $\dot{E}_{F}$ notwendig. $\dot{E}_{P}$ ist der exergetische Nutzen einer Komponente im stationären Zustand und $\dot{E}_{F}$ stellt den exergetischen Aufwand dar.
+
+\subsection{Pumpe}
+\begin{figure}[h!]
+ \centering
+ \includegraphics[height=0.15\textheight]{Bilder/pumpa}
+  \caption{Exergiebilanz einer Pumpe} 
+  \label{pic.Pumpe}
+\end{figure}
+Bei der Pumpe ist 
+\begin{align}
+\dot{E}_{\n{P}} \ &= \dot{E}_{\n{2}}- \dot{E}_{\n{1}} 
+\end{align}
+und 
+\begin{align}
+\dot{E}_{\n{F}} \ &= \dot{W}_{\n{el}}
+\end{align}
+$\dot{W}_{\n{el}}$ berechnet sich bei einer Pumpe durch:
+\begin{align}
+\dot{W}_{\n{el}} \ &= \dot{H}_{\n{2}}-\dot{H}_{\n{1}}\label{pumpe}
+\end{align}
+Das $\dot{E}_{D}$ ergibt sich aus der Gleichung \ref{eq.exbilanz}:
+\begin{align}
+\dot{E}_{\n{D}} \ &= \dot{E}_{\n{1}}- \dot{E}_{\n{2}}- \dot{W}_{\n{el}} \label{ed.pump}
+\end{align}
+
+Die Gleichung zur Bestimmung des exergetischen Wirkungsgrades einer Anlagenkomponente lautet:
+\begin{align}
+\varepsilon \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} = \frac{\dot{E}_{\n{P}}}{\dot{E}_{\n{F}}} = 1- \frac{\dot{E}_{\n{D}}}{\dot{E}_{\n{F}}} \label{gl.ex.eps}
+\end{align}
+und damit für die Pumpe:
+\begin{align}
+\varepsilon \ &= \ \frac{\dot{E}_{\n{2}}-\dot{E}_{\n{1}}}{\dot{W}_{\n{el}}}  \label{gl.ex.eps.pump}
+\end{align}
+\subsection{Turbine}
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=0.15\textheight]{Bilder/turba}
+  \caption{Exergiebilanz einer Turbine} 
+  \label{pic.Turbine}
+\end{figure}
+
+Wenn die Turbine in Abbildung \ref{pic.Turbine} betrachtet wird, dann wird der Aufwand als 
+\begin{align}
+\dot{E}_{\n{F}} \ &= \dot{E}_{\n{1}}- \dot{E}_{\n{3}}- \dot{E}_{\n{2}}\label{ef.turb}
+\end{align}
+errechnet. 
+Der Nutzen ist $\dot{W}_{mech}$.
+Nach Betrachtung der Systemgrenze kann $\dot{E}_{D}$ folgendermaßen bestimmt werden:
+\begin{align}
+     \dot{E}_{\n{D}} \ &= \ \dot{E}_{\n{1}} - \dot{E}_{\n{2}} - \dot{E}_{\n{3}}- \vert\dot{W}_{\n{mech}}\vert
+\end{align}
+
+Für $\varepsilon$ ergibt sich demnach:
+\begin{align}
+\varepsilon \ &= \ \frac{\vert\dot{W}_{mech}\vert}{\dot{E}_{\n{1}} - \dot{E}_{\n{2}} - \dot{E}_{\n{3}}}  \label{gl.ex.eps.turb}
+\end{align}
+
+\subsection{Dampferzeuger/Überhitzer/Zwischenüberhitzer}\label{dampferz.}
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=0.2\textheight]{Bilder/eco1}
+  \caption{Dampferzeuger} 
+  \label{pic.eco}
+\end{figure}
+Das Rauchgas wird vereinfacht betrachtet und nicht in den später aufgeführten Prozessen simuliert. In der Realität wird der Verdampfer, die Zwischenüberhitzung bzw. die Überhitzung und der Economizer in einer Apparatur wie in Abbildung \ref{pic.eco} dargestellt, gebaut. In der Simulation ist es allerdings von Vorteil die einzelnen Komponenten abzutrennen. Durch die Separation ist es möglich die Exergieströme $\dot{E}_{\n{q}}$ einzeln zu betrachten. In Abbildung \ref{pic.boiler} ist die vereinfachte Version dargestellt. 
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=0.15\textheight]{Bilder/boila}
+  \caption{Exergiebilanz eines Dampferzeugers} 
+  \label{pic.boiler}
+\end{figure}
+In dieser Version muss beachtet werden, dass es einen zugeführten Wärmestrom $\dot{Q}$ gibt. Aus diesem $\dot{Q}$ lässt sich folgender Exergiestrom $\dot{E}_{\n{q}}$ berechnen:
+
+\begin{align}
+     \dot{E}_{\n{q}} \ &=\ \left(1- \frac{T_{\n{0}}}{T_{\n{m}}}\right)\dot{Q} = \eta_{\n{carnot,i}}\cdot\dot{Q}
+\end{align}
+In dieser Gleichung wird die thermodynamische Mitteltemperatur verwendet. Bei konstantem Druck, also unter Vernachlässigung der Reibung, ergibt sich diese für die Wärmeübertragung zu:
+\begin{align}
+     {T_{\n{m}}} \ &=\ \frac{h_{\n{aus}}-h_{\n{ein}}}{s_{\n{aus}}-s_{\n{ein}}}
+\end{align}
+Die Enthalpien und Entropien sind die des Rauchgases. Um die jeweiligen Werte zu erhalten, wird eine Näherungsformel von Eisermann für den Brennwert und die absolute Entropie der Kohle verwendet. Die Kohle muss dafür in eine wasser- und aschefreie Substanz umgerechnet werden. Um die Näherungen berechnen zu können, müssen Werte für die jeweiligen Temperaturen gefunden werden. Hierfür wurde folgende, in Abbildung \ref{pic.T-deltaH} abgebildete Vorgehensweise gewählt. 
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=0.25\textheight]{Bilder/deltah}
+  \caption{T,$\Delta{\dot{H}}$-Diagramm} 
+  \label{pic.T-deltaH}
+\end{figure}
+Die Abbildung stellt ein $T,\Delta{\dot{H}}$-Diagramm dar. Die obere Linie (A$\rightarrow$ D) kennzeichnet den Rauchgasstrom. Die vertikalen Linien unterteilen das Diagramm in verschiedene Bereiche. Der mit 1 gekennzeichnete Bereich ist für den Kaliumdampferzeuger (also dem Erhitzer, Verdampfer und Überhitzer), 2 steht für den Zwischenüberhitzer und 3 für einen weiteren Zwischenüberhitzer aus dem Wasserdampfkreislauf. Die gesuchten Temperaturen können aus den Punkten B und C bestimmt werden. \par
+Die Eingangstemperatur, die Temperatur in Schnittpunkt A, ist die adiabate Verbrennungstemperatur der Kohle bei einem Oxidationsverhältnis $\lambda$ von 1,05. Die Ausgangstemperatur, der Schnittpunkt D, ist eine Annahme. \par %Auf die Bedeutung des unteren Bereiches des Diagramms wird in Abschnitt \ref{ausblick} Bezug genommen.
+
+\subsection{Wärmeübertrager}
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=0.15\textheight]{Bilder/waerme31}
+  \caption{Exergiebilanz eines Wärmeübertragers} 
+  \label{pic.Wärme}
+\end{figure}
+
+Der Nutzen lässt sich als die Differenz der beiden kalten Exergieströme bezeichnen, da der kältere Strom erhitzt werden soll.
+\begin{align}
+\dot{E}_{\n{P}} \ &= \dot{E}_{4}- \dot{E}_{3}
+\end{align}
+Der Aufwand demnach ist die Differenz der warmen Ströme.
+\begin{align}
+\dot{E}_{\n{F}} \ &= \dot{E}_{1}- \dot{E}_{2}
+\end{align}
+Unter Zuhilfenahmne einer Bilanzierung des Wärmeübertragers, in Abbildung \ref{pic.Wärme} dargestellt, folgt für die Exergievernichtung:
+\begin{align}
+\dot{E}_{\n{D}} \ &= \dot{E}_{1}+ \dot{E}_{3}-\dot{E}_{4}- \dot{E}_{2}
+\end{align}
+und damit ergibt sich der exergetische Wirkungsgrad zu:
+\begin{align}
+\varepsilon \ &= \ \frac{\dot{E}_{4}- \dot{E}_{3}}{\dot{E}_{1}- \dot{E}_{2}}\label{gl.ex.eps.wärme}
+\end{align}
+
+
+
+
+\subsection{Mischer/Speisewasserbehälter}
+
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[height=0.15\textheight]{Bilder/speise}
+  \caption{Exergiebilanz eines Speisewasserbehälters} 
+  \label{pic.Speisewasser}
+\end{figure}
+Legt man um den Speisewasserbehälter eine Bilanzgrenze und wendet die Gleichung \ref{eq.exbilanz} an, erhält man für die Exergievernichtung $\dot{E}_{D}$ folgende Gleichung:
+
+\begin{align}
+     \dot{E}_{\n{D}} \ &= \ \dot{E}_{\n{1}} + \dot{E}_{\n{2}} + \dot{E}_{\n{3}}- \dot{E}_{\n{4}} 
+\end{align}
+Ist $\dot{E}_{3}$ der kalte Strom und die beiden anderen die warmen Ströme, ergibt sich der Nutzen zu:
+%Achtung !!!!
+\begin{align}
+     \dot{E}_{\n{P}} \ &= \ \dot{m}_{\n{3}}(e_{\n{4}}-e_{\n{3}})
+\end{align}
+und der Aufwand zu:
+
+\begin{align}
+     \dot{E}_{\n{F}} \ &= \ \dot{m}_{\n{1}}(e_{\n{1}}-e_{\n{4}})+\dot{m}_{\n{2}}(e_{\n{2}}-e_{\n{4}})
+\end{align}
+
+Damit gilt für den exergetischen Wirkungsgrad nach Gleichung \ref{gl.ex.eps}:
+\begin{align}
+\varepsilon \ &= \ \frac{\dot{m}_{\n{3}}(e_{\n{4}}-e_{\n{3}})}{\dot{m}_{\n{1}}(e_{\n{1}}-e_{\n{4}})+\dot{m}_{\n{2}}(e_{\n{2}}-e_{\n{4}})}  \label{gl.ex.eps.speise}
+\end{align}
+
+
+\subsection{Generator}
+
+%Bei der exergetischen Analyse handelt es sich um eine vergleichsmäßig einfache Vorgehensweise.
+Um die Exergievernichtung $\dot{E}_{\n{D}}$ zu berechnen, wird folgende Gleichung genutzt.
+\begin{align}
+     \dot{E}_{\n{D}} \ &= \ \dot{W}_{\n{mech}}-\dot{W}_{\n{el}}
+\end{align}
+und damit ergibt sich nach Gleichung \ref{gl.ex.eps} für $\varepsilon$
+
+\begin{align}
+\varepsilon \ &= \ \frac{\dot{W}_{\n{el}}}{\dot{W}_{\n{mech}}}
+\end{align}
+
+
+
+\subsection{Drossel/dissipative Komponenten}
+Zu den dissipativen Komponenten zählen hauptsächlich Drosseln und Kondensatoren. Bei dissipativen Komponenten ist es nicht möglich einen Nutzen und Aufwand zu definieren. Es ist somit auch nicht möglich einen Wirkungsgrad zu berechnen. Trotz dessen kann über eine Exergiebilanz die Exergievernichtung ermittelt werden. 
+\begin{figure}[h!]
+ \centering
+  \includegraphics[height=0.1\textheight]{Bilder/kond}
+  \caption{Exergieanalyse eines Kondensators} 
+  \label{pic.kond}
+\end{figure}
+
+Es ergibt sich für den Kondensator ein $\dot{E}_{\n{D}}$ von:
+\begin{align}
+     \dot{E}_{\n{D}} \ &= \ \dot{E}_{\n{3}} + \dot{E}_{\n{2}} - \dot{E}_{\n{1}} - \dot{E}_{\n{4}}%?
+\end{align}
+und für die Drossel:
+\begin{align}
+     \dot{E}_{\n{D}} \ &= \ \dot{E}_{\n{3}}- \dot{E}_{\n{4}} 
+\end{align}
+
+\begin{figure}[h!]
+ \centering
+  \includegraphics[height=0.1\textheight]{Bilder/kond1}
+  \caption{Exergieanalyse einer Drossel} 
+  \label{pic.Drossel}
+\end{figure}
+Anhand der Betrachtung der Drossel wird klar, welche Unterschiede zwischen einer Exergie- und einer 
+Energieanalyse existieren.\par
+Aus der Energiebilanz der in Abbildung \ref{pic.Drossel} dargestellten Drossel folgt:
+\begin{align}
+     \dot{H}_{\n{3}} \ &= \ \dot{H}_{\n{4}} 
+\end{align}
+Hierbei wurde die Annahme gemacht, dass es sich um eine adiabate Drosselung handelt, es gibt keine 
+Wärmeverluste. % Würde $\dot{H}_{\n{4}}$ als Nutzen definiert und $\dot{H}_{\n{3}}$ 
+%als Aufwand definiert werden, würde der energetische Wirkungsgrad 
+%\begin{align}
+%\eta \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} = \frac{\dot{H}_{\n{4}}}{\dot{H}_{\n{3}}} = 1\label{eq.eta.drossel} 
+% \end{align}
+%betragen. Diese Komponente wäre damit im adiabaten Zustand perfekt. Wird mit genau den gleichen 
+%Annahmen ein exergetischer Wirkungsgrad berechnet, ergibt sich:
+%\begin{align}
+%\varepsilon \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} = 1- \frac{\dot{E}_{\n{D}}}{\dot{E}_{\n{F}}} = 1- 
+%\frac{\dot{E}_{\n{3}}-\dot{E}_{\n{4}}}{\dot{E}_{\n{3}}}  < 1 \label{eq.epsilon.drossel}
+%\end{align}
+Somit wäre belegt, dass es einen Unterschied macht, ob eine Komponente exergetisch oder 
+energetisch betrachtet wird. Die Drossel ist bei der exergetischen 
+Betrachtung mit einem Verlustterm behaftet. 
+Um diesen Verlusten zu entgegnen, könnte anstelle einer Drossel 
+in einem Prozess eine Turbine eingebaut werden. Eine Turbine ist zwar kostenintensiver, 
+hat aber den Vorteil, 
+dass über den vorhandenen Druckunterschied Arbeit gewonnen werden könnte. 
+
+
+\subsection{Wirkungsgrad der Gesamtanlage}
+Es gibt zwei unterschiedliche Möglichkeiten den exergetischen Wirkungsgrad des Prozesses zu berechnen. 
+\begin{align}
+\varepsilon_{\n{ges,1}} \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} = 1- \left(\frac{\sum\limits_{\n{k}}\dot{E}_{\n{D,k}}+\dot{E}_{\n{L,ges}}}{\dot{E}_{\n{F}}}\right) \label{eq.eps.ges1}%?
+\end{align}
+$\dot{E}_{\n{L,ges}}$ stellt den Exergieverluststrom über die Systemgrenze dar und errechnet sich wie folgt:
+\begin{align}
+     \dot{E}_{\n{L,ges}} \ &= \ \left(h_{\n{aus}}-h_{\n{0}})- T_{\n{0}} \cdot (s_{\n{aus}}-s_{\n{0}}\right)
+\end{align}
+Es handelt sich bei den Entropien und Enthalpien um die Werte des Rauchgasstromes. In Abbildung \ref{pic.T-deltaH} ist die Entwicklung dessen dargestellt. In Schnittpunkt D kann die Temperatur des Ausgangsstromes abgelesen werden. $h_{\n{aus}}$ und $s_{\n{aus}}$ sind die der Ausgangstemperatur zugehörigen Werte.
+$\dot{E}_{\n{F}}$ stellt den Exergieaufwand über die Systemgrenze dar. Für die Berechnung wird der Massenstrom des Brennstoffs $\dot{m}_{\n{Brennstoff}}$ und die chemische Exergie der Kohle benötigt.
+\begin{align}
+     \dot{m}_{\n{Brennstoff}} \ &=  \frac{\n{Aufwand}}{\n{Heizwert\,der\,Kohle}} = \frac{\sum\limits_{\n{j}}\dot{Q}_{\n{j}}}{\n{LHV}}
+\end{align}
+Da Steinkohle keine Umgebungskomponente im Modell von Ahrendts ist, wird die chemische Exergie der Steinkohle durch die Näherungsformel von Eisermann abgeschätzt.
+Somit ergibt sich für $\dot{E}_{\n{F}}$:
+\begin{align}
+     \dot{E}_{\n{F}} \ &= \ \n{Brennstoff\,der\,Kohle} \cdot \n{spezifische\,chemische\,Exergie\,der\,Kohle} = \ \dot{m}_{\n{Brennstoff}} \cdot e^{CH}_{\n{Kohle}} \label{ex.aufwand}
+\end{align}
+
+
+
+%mehr dazu schreiben Achtung !!!
+Die zweite Möglichkeit den exergetischen Wirkungsgrad zu berechnen ergibt sich aus folgender Gleichung:
+
+\begin{align}
+\varepsilon_{\n{ges,2}} \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} = \ \frac{\n{Nettoleistung}}{\n{exergetischen\,Aufwand}} \ =\ \frac{\sum{\vert\dot{W}_{\n{el,net}}\vert}}{\dot{E}_{\n{F}}}
+\label{eq.eps.ges2}
+\end{align}
+
+$\sum{\vert\dot{W}_{\n{el,net}}\vert}$ ergibt sich aus der Aufaddierung aller Verbraucher und Erzueger eines Systems. Es gehen Generatoren und Pumpen aller Art in die Berechnung ein. 

@@ -1,0 +1,277 @@
+
+\chapter{Auswertung}
+
+In diesem Kapitel werden die aus der berechneten Ergebnisse ausgewertet und analysiert.
+Laut Tabelle \ref{tab.gesw} ist die Verschaltungsvariante von Angelino mit einem berechneten Wirkungsgrad von 48\% der exergetisch effektivste. 
+Da eine Proportionalität zwischen dem exergetischen Wirkungsgrad und der Exergievernichtung besteht, kann in der Tabelle \ref{tab.y} abgelesen werden, dass der Prozess nach Angelino die niedrigste Gesamtexergievernichtung von 125,55\,MW aufweist. 
+Die größte Exergievernichtung hat der Prozess von Collier. Die gesamte Exergievernichtung berechnet sich aus den einzelnen Komponenten der Prozesse. In Tabelle \ref{tab.y} sind die Komponenten mit den größten Exergievernichtungstermen aufgelistet. 
+\begin{table}[htbp]
+\caption{Exergievernichtungskoeffizienten der wichtigsten Komponenten}
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & Collier & Angelino & Lojewski \\
+\hline
+Kaliumdampferzeuger & 35,84 & 41,27 & 34,07 \\
+\hline
+Wasserdampferzeuger & 11,87 & - & - \\
+\hline
+Kaliumkondensator & 10,43 & 10,84 & 18,81 \\
+\hline
+Zwischenüberhitzer & 9,97 & 15,48 & 17,16 \\
+\hline
+Wasserturbinen & 12,88 & 14,01 & 12,41 \\
+\hline
+Summe der Generatoren & 3,90 & 5,39 & 4,38 \\
+\hline
+Kondensator & 2,86 & 2,28 & 5,32 \\
+\hline
+Exergievernichtung des Gesamtprozesses [MW] &175,51&125,55&154,48\\ 
+\hline
+\end{tabular}  
+\end{center}
+
+\label{tab.y}
+\end{table}
+
+Im Folgenden werden die Ergebnisse der einzelnen Komponenten erläutert und mögliche Verbesserungen vorgestellt. 
+%Es werden in der Simulation keine Komponenten außerhalb des Dampfkreislaufes betrachtet.
+Es soll auf die Zwischenüberhitzer der einzelnen Prozesse eingegangen werden. Die Betrachtung der Zwischenüberhitzung bei Lojewski wird in dem Abschnitt der Kaliumdampferzeuger erläutert.%%% Achtung!!!
+%  über einen Heizkessel geschied, der nicht mit siumliert wurde, aber ähnlich eine ähnliche Problematik aufweist, wie der Kaliumdampferzueger, wird erst im Abschnitt des Kaliumdampferzeugers darauf eingegangen werden. 
+
+Die Zwischenüberhitzer in den Prozessen von Collier und Angelino sind Wärmeübertrager in denen Kalium kondensiert wird. 
+In der Verschaltung von Angelino sind drei Wärmeübertrager und in der von Collier zwei simuliert. In dem Prozess nach Angelino ist die Exergievernichtung in den einzelnen Zwischenüberhitzern geringer als in dem von Collier. Die größte Exergievernichtung eines Überhitzers im Prozess von Angelino beträgt 6,97\,MW, im Vergleich zu der kleinsten bei Collier 8,64\,MW. 
+
+
+Wärmeübertrager lassen sich in ihrer Effektivität $\epsilon$ bestimmen. 
+\begin{align}
+     \epsilon_{\n{WÜ}} \ &=\ \frac{\dot{Q}}{\dot{Q}_\n{max}}\ \label{eq.WÜ}
+ \end{align}
+$\dot{Q}_\n{max}$ wäre in einem unendlich ausgedehnten Gegenstromwärmeübertrager der größt mögliche Wärmestrom, der genutzt werden könnte. %geht das so ??!
+$\dot{Q}_\n{max}$ ist direkt proportional zu der Temperaturdifferenz der Eingangsströme. Je größer diese ist, desto mehr Wärme kann übertragen werden. 
+Um die Exergievernichtung in einem Wärmeübertrager zu berechnen, gibt es unterschiedliche Methoden. Es wird hier eine Weitere vorgestellt.
+\begin{align}
+    \dot{E}_\n{D,q} \ &=\ T_\n{0} \, \dot{Q} \, \frac{T_\n{h,m}-T_\n{c,m}}{T_\n{h,m} \cdot T_\n{c,m}}\ 
+		\label{eq.WÜed}
+ \end{align}
+Aus dieser Formel ergibt sich, dass nicht nur die Temperaturdifferenzen bei der Effizienz eines Wärmeübertragers eine Rolle spielen, sondern auch das Temperaturnieveau in dem die Wärmeübertragung stattfindet. 
+\begin{table}
+	\centering
+		\caption{Werte der Reheater}
+		\begin{tabular}{|l|c|c|c|c|}
+		\hline
+		Komponente & T$_\n{h,m}$ [°C] & T$_\n{c,m}$ [°C]& $\Delta$T [K] & $\dot{E}_\n{D,q}$  [MW]\\
+		\hline
+			Reheater 21 Angelino & 719,25 & 844,05 & 125,8 &5,68\\
+			\hline
+			Reheater 22 Angelino & 659,82 & 846,54 & 186,72& 6,78\\
+			\hline
+			Reheater 23 Angelino & 616,34 & 846,49 &230,15& 6,97\\
+			\hline
+			 \multicolumn{5}{|l|}{}\\
+			\hline
+			Reheater 21 Collier & 637,31 & 805,61 & 168,3& 8,64\\
+			\hline
+			Reheater 23 Collier & 596,77 & 805,61 & 208,84&8,68\\
+			\hline
+		\end{tabular}
+%	\caption{Werte der Reheater}
+	\label{tab:WerteDerReheater}
+\end{table}
+Um diese Werte zu analysieren, wird die Gleichung \ref{eq.WÜed} näher betrachtet. Allgemein wird festgestellt, dass bei einem kleineren $\Delta$T eine geringere Exergievernichtung auftritt. Für die geringere Exergievernichtung ist nicht nur die Temperaturdifferenz verantwortlich. Im  Vergleich des Wärmeübertragers 23 in dem Prozess von Angelino zu dem Wärmeübertrager 21 nach Collier, ist die Temperaturdifferenz bei Collier geringer, aber die Exergievernichtung größer. Ein Grund dafür, dass der Wärmeübertrager von Angelino effizienter ist, ist das höhere Temperaturniveau. Der ausschlaggebende Punkt für die niedrigere Exergievernichtung ist die unterschiedliche Wärmemenge, die in beiden übertragen wird. In dem Prozess von Collier wird eine größere Wärmemenge übertragen, $\dot{Q}_\n{Collier,23}$ ist 91,52\,MW und $\dot{Q}_\n{Angelino,21}$ ist 54,88\,MW. Der Einfluss dieser Größe ist in \ref{eq.WÜed} ersichtlich. In den folgenden T,$\Delta{\dot{H}}$-Diagrammen ist dieser Sachverhalt graphisch dargestellt. 
+Anhand der Größe der Fläche ist ablesbar, wie hoch die Exergievernichtung qualitativ ist. Je größer die Fläche, desto mehr Exergievernichtung entsteht. Die Erklärung dafür ist in der Gleichung \ref{eq.WÜed} zu finden.
+Mit zunehmendem $\dot{Q}$ und zunehmender Temperaturdifferenz vergrößert sich die Fläche in einem T,$\Delta{\dot{H}}$-Diagramm.  
+
+\begin{figure}
+%\subfigure[T,$\Delta{\dot{H}}$-Diagramm von Angelino]{\includegraphics[width=.49\textwidth]{Bilder/angelinoqt}}
+%\subfigure[T,$\Delta{\dot{H}}$-Diagramm von Collier]{\includegraphics[hight=.49\texthight]{Bilder/Collierqt}}
+
+\begin{minipage}[hbt]{0.45\textwidth}
+	\centering
+	\includegraphics[width=7cm,height=6cm]{Bilder/angelinoqt11}
+\caption{T,$\Delta{\dot{H}}$-Diagramm von Angelino}
+	\label{pic.qta}
+\end{minipage}
+\hfill
+\begin{minipage}[hbt]{0.45\textwidth}
+	\centering
+	\includegraphics[width=7cm,height=6cm]{Bilder/Collierqt1}
+	\caption{T,$\Delta{\dot{H}}$-Diagramm von Collier}  
+	\label{pic.qtc}
+\end{minipage}
+\end{figure}
+Anhand dieser Erkenntnisse lassen sich Rückschlüsse auf die Verbesserung der Wärmeübertragung ableiten. 
+ Das Temperaturniveau kann angehoben werden, wenn eine höhere Prozesstemperatur gewählt wird. Auch die einzelnen Mitteltemperaturdifferenzen können verringert werden.  
+
+Die Simulation zeigt auf, dass die Verringerung der Anzahl der Wärmeübertrager von drei auf zwei eine Verbesserung des Prozesses von Angelino zur Folge hat. Damit wird die Exergievernichtung, die bei der Wärmeübertragung entsteht, verringert. Die Verringerung der Komponentenanzahl hat positive Auswirkungen auf die Anlagenkosten.
+\par
+Da es sich bei dem Kaliumkondensator um einen Kondensator und ebenfalls um einen Wärmeübertrager handelt, gelten die oben aufgezeigten Gleichungen und Überlegungen.
+Der Kaliumkondensator nimmt in der Simulation des Prozesses von Lojewski einen hohen Stellenwert ein. In diesem Prozess wird die Kondensationswärme des Kaliumdampfes sowohl für die Verdampfung als auch für den ersten Teil der Überhitzung des Wassers genutzt. Es werden 29,06\,MW Exergie vernichtet, da viel Wärme übertragen wird. Im Vergleich dazu hat der Kaliumkondensator in dem Prozess von Collier eine Exergievernichtung von 18,11\,MW. 
+In den Abbildungen \ref{Bild2} und \ref{Bild1} sind die dazugehörigen T,$\Delta{\dot{H}}$-Diagramme dargestellt. 
+
+ \begin{figure}
+\begin{minipage}[hbt]{0.45\textwidth}
+	\centering
+	\includegraphics[width=7cm,height=6cm]{Bilder/Collierkondensatora}
+	\caption{T,$\Delta{\dot{H}}$-Diagramm von dem Kaliumkondensator in dem Prozess von Collier}
+	\label{Bild1}
+\end{minipage}
+\hfill
+\begin{minipage}[hbt]{0.45\textwidth}
+	\centering
+	\includegraphics[width=7cm,height=6cm]{Bilder/lojewskikondensatora}
+	\caption{T,$\Delta{\dot{H}}$-Diagramm von dem Kaliumkondensator in dem Prozess von Lojewski}
+	\label{Bild2}
+\end{minipage}
+\end{figure}
+ Die Fläche des T,$\Delta{\dot{H}}$-Diagramms des Prozesses nach Collier ist kleiner, womit sich die geringere Exergievernichtung erklärt. \par
+
+In den Tabellen, in denen die Ergebnisse der Berechnungen dargestellt sind, ist erkennbar, dass die Kaliumpumpe in jeder Simulation eine Leistung von 0\,MW aufweist. Werden die Berechnungen genauer betrachtet, kann erkannt werden, dass folgende Leistungen benötigt werden, siehe Tabelle \ref{tab.kaliumpump}.
+\begin{table}[htbp]
+\caption{Berechnung der Kaliumpumpenleistung}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+        &   &    Collier &   Angelino &   Lojewski \\
+\hline
+$\dot{E}_{\n{win}}$ & [MW] &    41,3083 &    36,3789 &    34,9754 \\
+\hline
+ $\dot{E}_{\n{aus}}$ & [MW] &    41,3083 &    36,3815 &    34,9774 \\
+\hline
+$W_{\n{mech}}$ & [kW] &          0 &      2,709 &      2,112 \\
+\hline
+$W_{\n{mech}}$ aus der Simulation & [kW]  &       1,64 &       2,57 &       1,32 \\
+\hline
+\end{tabular}  
+\end{center}
+\label{tab.kaliumpump}
+\end{table}
+Diese Werte sind erfahrungsgemäß zu gering.
+%Diese derart niedrigen Leistungen sind nicht nur mit der Ungenauigkeit der Werte zu erklären, sondern auch damit,
+In den Gleichungen die Cycletempo verwendet, werden die Temperaturdifferenzen zur Berechnung der Enthalpiedifferenz genutzt. Da die Ströme vor und nach der Pumpe eine sehr geringe Temperaturdifferenz aufweisen, sind auch die Enthalpiedifferenzen gering. 
+Da wie in Gleichung \ref{pumpe} erkennbar, die Enthalpiedifferenz ausschlaggebend für die benötigte Leistung ist, ergibt sich ein zu niedriger Wert.
+Ebenfalls ist durch die zu kleine Enthalpiedifferenz die Berechnung für die Entropieerzeugung zu niedrig, wodurch die gesamte Entropieerzeugung zu niedrig ausfällt. 
+Deswegen sollte in folgenden Simulationen mit Cycle-Tempo darauf geachtet werden, dass der Temperaturunterschied höher wird. Es könnte eine weitere Komponente eingebaut werden, um dies zu erreichen.
+
+Das Programm Cycletempo arbeitet mit einer hohen Genauigkeit. Es ist nicht möglich die Ergebnisse in der gleichen Genauigkeit dem Programm zu entnehmen. Es gelingt nur eine Genauigkeit von bis zu drei Nachkommastellen. Die voneinander anbweichenden Werte für  $W_{\n{mech}}$ aus der Simulation und aus den Berechnungen begründen sich damit. 
+Da in allen Prozessen die gleiche Problematik auftaucht, ist dennoch die Vergleichbarkeit gegeben. 
+
+%%%%
+%%%%
+
+%In der folgenden Tabelle \ref{tab.y} sind die Komponenten aufgeführt, die den größten Teil der Exergievernichtung ausmachen.
+Der Kaliumdampferzeuger hat in allen Prozessen den größten Anteil an der Exergievernichtung. Da die Rauchgasseite nicht mit simuliert wurde, basieren diese Ergebnisse auf Annahmen. Die Vorgehensweise der Bestimmung der Temperaturen wird in Absatz \ref{dampferz.} bereits erläutert. Im folgenden T,$\Delta{\dot{H}}$-Diagramm \ref{pic.temperatur} kann nachvollzogen werden, wie die Vorgehensweise der Temperaturbestimmung im Einzelnen ist. 
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=\textwidth]{Bilder/temperatur1a}
+  \caption{T,$\Delta{\dot{H}}$-Diagramm der Prozesse}  
+  \label{pic.temperatur}
+\end{figure}
+
+Der Prozess von Lojewski ist in rot, der von Angelino in blau und der von Collier in grün dargestellt. Erkennbar ist, dass es bei Angelino keine Abspaltung der Komponenten gibt. Der Kessel wird ausschließlich für die Erhitzung des Kaliumkreislaufes verwendet. Bei Lojewski werden drei Bereiche im Diagramm eingeteilt. Der erste Bereich steht für den Kaliumkessel, der Zweite für den Zwischenüberhitzer und der Dritte für den zweiten Zwischenüberhitzer des Wasserkreislaufes. Im Prozess nach Collier werden zwei Bereiche definiert. Der Erste für den Kaliumerhitzter und Überhitzer und der Zweite für den des Wassers. Es werden im unteren Teil keine Abstufungen gemacht. Das Wasser oder Kalium wird erhitzt, verdampft und zum Teil auch überhitzt. Das wird in der Genauigkeit hier nicht unterschieden, auch erkennbar in der Abbildung \ref{pic.temperatur}.  
+
+Die Rauchgastemperatur von 500\,°C für alle Prozesse ist ein angenommender Wert, der zu Ungenauigkeiten führen kann. Sollten in der Zukunft diese Prozesse genauer betrachtet werden, sollte die Rauchgasseite näher untersucht werden und eventuell simuliert werden, damit hier nicht auf Grund von Annahmen die Ergebnisse verfälscht werden. \par
+
+Wie aus Tabelle \ref{tab.gesw} ersichtlich, wird die Berechnung des exergetischen Gesamtwirkungsgrades auf unterschiedliche Weise durchgeführt. Ebenso werden unterschiedliche Ergebnisse berechnet. Qualitativ sind die Ergebnisse identisch. Der Prozess, der nach den Vorlagen von Angelino entwickelt wurde, ist exergetisch der Bessere und der nach Collier der Schlechtere. 
+Die unterschiedlichen Ergebnisse sind darauf zurückzuführen, dass in der ersten Art der Berechnung des Gesamtwirkungsgrades die Summe aller Verluste im und über die Systemgrenze des Prozesses in die Berechnung eingehen. Bei der zweiten Berechnungsformel werden die Verluste nicht  betrachtet, die Nettoleistung wird als Nutzen definiert. Nach der ersten Berechnungsart ergibt sich für alle drei Prozesse ein besserer exergetischer Wirkungsgrad. Die Annahmen der Rauchgase sind evtl. zu positiv bewertet worden. Die Verluste der Prozesse über die Systemgrenze könnten zu gering sein und damit auch der jeweilige Anteil der Exergievernichtung im Gesamtprozess. \par
+
+Die Turbinen, die Generatoren und auch die Kondensatoren haben alle einen hohen Stellenwert in der Exergievernichtung. Diese Komponenten lassen sich durch die Prozessverschaltung wenig beeinflussen. In der Simulation wurden isentrope Wirkungsgrade von 0,99 für die Wasserdampf-Turbinen angenommen und mechanische von 0,98. % Wenn es Hersteller geben sollte, die bessere Turbinen herstellen, könnte hier abgewegt werden, ob die Kosten dafür sinnvoll sind zu tragen. Das gleiche gilt für die 
+Generatoren werden mit einem Wirkungsgrad von 0,98 simuliert. Bei den Kondensatoren könnten sich evtl. geringfügige Verbesserungen finden, vor allem in dem Prozess nach Lojewski. Die Exergievernichtung ist in dem Prozess bei dieser Komponente verhältnismäßig groß.\par
+Die in der Tabelle aufgenommenen Komponenten machen bei allen Prozessen ca. 80\% der gesamten Exergievernichtung aus, bei dem Prozess von Collier knapp 90\%. In dem nach Collier simulierten Prozess gibt es noch eine Drossel, die einen Exergievernichtungskoeffizienten von 6,44 ausmacht. Diese Drossel liegt im Strom Nummer 21. Diese kann nicht weiter verbessert werden, da es sich hierbei um den Zumischungsstrom für die Verringerung der Dampfnässe im Kaliumkreislauf handelt. 
+In allen Prozessen treten Verluste auf, die nicht weiter von Bedeutung sind, da sie sehr gering sind. Selbst die Pumpen, die mit Wirkungsgraden von zum Teil weniger als 80\% fungieren, steuern nur einen geringen Teil der Exergievernichtung bei. 
+Die einzige Komponente, die einen kleinen, nennenswerten Teil beisteuert, ist der Speisewasserbehälter. Die hier entstehende Exergievernichtung liegt an den Mischvorgängen. Es werden Ströme mit unterschiedlicher Temperatur gemischt. Der Speisewasserbehälter im Prozess von Collier weist die höchste Exergievernichtung auf. Der Dampfstrom, der aus der Niederdruckturbine kommt, hat eine viel höhere Temperatur als in den anderen Prozessen. Dadurch ist die Mischung exergetisch schlechter. Bei Angleichung der Temperaturen kann der Verlust verringert werden.\par
+
+Optimierungsmöglichkeiten der Prozesse ergeben sich durch eine Veränderung der Annahmen. 
+Ein Beispiel dafür ist die Annahme in dem Prozess, den Collier vorgestellt hat. Er geht davon aus, dass nur 40\% des Massenstromes aus dem Kaliumverdampfer in die Hochdruckturbine eingehen, damit die anderen 60\% dem Ausgangsstrom zugemischt werden können. Diese Annahme beruht darauf, dass am Austritt der zweiten Turbine genügend Dampfgehalt bestehen muss. Da bereits Kaliumturbinen mit einer Ausgangsnässe von 87\% erprobt sind, kann ein größerer Massenstrom in die Hochdruckkaliumturbine eingehen. Dies führt zu einer Steigerung der Leistung der Turbine, womit sich der Gesamtwirkungsgrad erhöhen kann, da kein weiterer Aufwand für den Prozess entsteht. \par
+\begin{figure}
+
+\begin{minipage}[hbt]{0.48\textwidth}
+	\centering
+	\includegraphics[width=7.5cm]{Bilder/tsange}
+	\caption{T,s-Diagramm des nach Angelino entworfenen Kalium-Prozesses}
+	\label{pic.tsange}
+\end{minipage}
+\hfill
+\begin{minipage}[hbt]{0.48\textwidth}
+	\centering
+	\includegraphics[width=7.5cm]{Bilder/tsangelino}
+	\caption{T,s-Diagramm des nach Angelino entworfenen Wasserdampf-Prozesses}  
+	\label{pic.tsangelino}
+\end{minipage}
+\end{figure}
+Wird auf die Annahme des gleichen Generatorverhältnisses verzichtet, also 73,38\% im Wasserkreislauf und 26,62\% für den Generator im Kaliumkreislauf, kann die Simulation wie folgt geändert werden. In die HD-Kaliumturbine gehen 43,47\% des Massenstroms aus dem Kaliumdampferzeuger ein. Damit ergibt sich ein Dampfgehalt von 88,67\% . Der energetische Wirkungsgrad wird auf 47,62\% angehoben. Der exergetische Wirkungsgrad verändert sich mit der ersten Berechnung von 44,41\% auf 44,40\% und in der zweiten Berechnung von 42,12\% auf 42,14\% . Dieser Prozess hat Potential sowohl energetisch als auch exergetisch verbessert zu werden. \par
+Für alle Prozesse gilt, dass sowohl bei der internen Wärmerückgewinnung, bei den Vorwärmern im Wasserkreislauf und bei der Niederdruckvorwärmung noch Möglichkeiten der Verbesserung bestehen. Für die Vorwärmung könnten mehr Wärmeübertrager eingesetzt werden, damit in jedem eine geringere Wärmemenge übertragen werden muss und damit die Exergievernichtung in den einzelnen Komponenten sinkt. 
+\begin{figure}
+\begin{minipage}[hbt]{0.48\textwidth}
+	\centering
+	\includegraphics[width=7.5cm]{Bilder/tsloje}
+	\caption{T,s-Diagramm des nach Lojewski entworfenen Kalium-Prozesses}
+	\label{pic.tsloje}
+\end{minipage}
+\hfill
+\begin{minipage}[hbt]{0.48\textwidth}
+	\centering
+	\includegraphics[width=7.5cm]{Bilder/tslojewski}
+	\caption{T,s-Diagramm des nach Lojewski entworfenen Wasserdampf-Prozesses}  
+	\label{pic.tslojewski}
+\end{minipage}
+\end{figure}
+Die T,s-Diagramme zeigen auf, welche Unterschiede sich bei den betrachteten Verschaltungsmethoden ergeben.
+Das linke Temperatur-Entropie-Diagramm ist immer das des Kaliumkreislaufes und das Rechte des Wasserdampfkreislaufes. Diese Zustandsänderungen liegen übereinander. Je kleiner die Temperaturdifferenz zwischen den beiden Graphen ist, desto besser kann die Abwärme des Kaliumkreislaufes genutzt werden.
+
+\begin{figure}
+\begin{minipage}[hbt]{0.49\textwidth}
+	\centering
+	\includegraphics[width=7.5cm]{Bilder/t-scol}
+	\caption{T,s-Diagramm des nach Collier entworfenen Kalium-Prozesses}
+	\label{pic.tscol}
+\end{minipage}
+\hfill
+\begin{minipage}[hbt]{0.49\textwidth}
+	\centering
+	\includegraphics[width=7.5cm]{Bilder/tscollier}
+	\caption{T,s-Diagramm des nach Collier entworfenen Wasserdampf-Prozesses}  
+	\label{pic.tscollier}
+\end{minipage}
+\end{figure}
+
+In den Prozessen kann nicht die gleiche Differenz erreicht werden, weswegen sie sich in ihren Wirkungsgraden unterscheiden. 
+In jedem der Prozesse ergibt in diesem Punkt eine Verbesserungsmöglichkeit. Durch eine andere Wahl der Parameter lässt sich diese Temperaturdifferenz verringern. Ebenfalls ist es möglich, den Kaliumkreislauf anders zu strukturieren, sodass mehrere Kondensationsniveaus die Fläche zwischen dem Wassderdampfkreilauf und dem Kaliumkreislauf schließt. Es ergibt sich ein Diagramm wie in Abbildung \ref{pic.angelinoüberkrit} zu sehen ist. 
+%Werden beide Diagramme miteinander verglichen, kann erkannt werden, dass es sich bei der Umsetztung nach Angelino um eine effizientere handelt, da sich eine kleinere Fläche ergibt. Auch anhand der Exergievernichtung kann das abgelesen werden. In dem Prozess nach Angelino ergibt sich f?r die hier betrachteten Komponenten zusammengenommen eine Exergievernichtung von 33,04\,MW und bei der Exergieanalyse des Prozesses nach Collier ergab sich eine Vernichtung von 53,54\,MW.
+%Beide Prozesse k?nnen gerade hinsichtlich dieser Komponenten noch verbessert werden. Es k?nnte die Exergievernichtung verringert werden, indem die Temperaturdifferenz, demnach die Fl?che im Q-\Delta \dot{H}-Diagramm verringert w?rde. Im Zuge der Simulation ergab sich, dass die Wahl von weniger W?rm?bertragern durchaus Sinn macht. W?rme?bertrager haben einen hohen Verlustterm. Dieser k?nnte verringert werden, wenn weniger einbebaut w?rden. Au?erdem ist es sicherlich von wirtschaftlicher. 
+
+
+
+
+
+
+
+
+%Das wichtige aber bei der Betrachtung der Ergebnisse ist, dass es sich bei dem Prozess von Angelino um den sinnvollsten Prozess handelt. Sowohl bei der energetischen als auch bei der exergetischen Betrachtung, kann erkannt werden, dass es sich um die beste Verschaltungsvariante handelt, da die Abw?rme des Kaliumkreislaufes am besten geutzt werden kann. 
+%Bei Collier ergibt sich der schlechteste Wirkungsgrad, energetisch und auch exergetisch gesehen. Das kann darauf zur?ckgef?hrt werden, dass es viele Verluste bei der Verwendung meherer W?rme?bertrager gibt und sich auch anderorts Verluste einschleichen. Im Zuge der Exergieanalyse stellt sich raus, dass vor allem die Komponenten... exergetisch verbessert werden k?nnten. Eine Verbesserung des Prozesses k?nnte auch die Ver?nderung des Massenstromverh?lltnisses sein, mit dem in die Kaliumhochdruckturbine eingegangen wird. In der Prozessbescheibung von Collier wird verlangt, dass 40\% des Massenstroms in die Turbine eintritt und der Rest dem Abdampf zugemischt wird. Es k?nnten aber mehr gew?hlt werden, womit sich die Turbinen Leistung seigern lie?e und damit auch der Gesamtwirkungsgrad der Anlage erh?ht werden k?nnte. Die Dampfn?sse am Ausgang der Niederdruckturbine ist hierbei ein limitiernder Faktor. Duch eine entprechende Simulation, konnte herausgefunden werden, dass 44\% m?glich sind und zu einer N?sse von ... f?hrt. 
+%\begin{table}[htbp]
+%\begin{center}
+%\begin{tabular}{|l|r|r|r|}
+%\hline
+% & \multicolumn{1}{l|}{Lojewski} & \multicolumn{1}{l|}{Collier} & \multicolumn{1}{l|}{Angelino} \\ \hline
+%Kaliumdampferzuger & 0,858 & 0,858 & 0,889 \\ \hline
+%Kaliumkondensator & 0,86 & 0,891 & 0,89 \\ \hline
+% & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \hline
+%Reheater & 0,786 & 0,85 & 0,857 \\ \hline
+%W?rme?bertrager & 0,86 & 0,826 & 0,871 \\ \hline
+%Pumpen(Wasser ohne eigenbedarf und ohne 45) & 0,762 & 0,726 & 0,762 \\ \hline
+%\end{tabular}
+%\end{center}
+%\caption{Exergetische Wirkungsgrade einzelner Komponenten}
+%\label{Exergetische Wirkungsgrade einzelner Komponenten}
+%\end{table}
+
+
+
+
+
+%Bei Lojewski werden haupts?chlich verluste in den Komponenten... gemacht. Hier sollte es evtl m?glich sein Komponetnte xy zu verbessern um damit den gesamten Prozess zu verbessern. 
+%Auch bei dem Prozess der sich hier als exergetisch am sinnvollsten darstellt ist es an den Komponenten... noch m?glcih einige Verluste einzusparen. 
+
+

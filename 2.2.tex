@@ -1,0 +1,877 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	Header	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \documentclass[10pt,a4paper,liststotoc,headsepline]{scrreprt}
+
+\documentclass[
+open=right,
+german,
+pdftex,
+a4paper,     % DinA4 Papier
+10pt,        % Schriftgröße
+% BCOR=19mm,		% Bindekorrektur: bei Buch normalerweise 12mm
+% paper=A4,		% A4 Seite
+% captions=tableheading,	% korrekte AbstÃ¤nde bei TabellenÃ¼berschriften
+% pagesize=automedia,	% Setzen der korrektern PapiergrÃ¶ÃŸe fÃ¼r Ausgabemedien
+%twoside,     %
+oneside, %twoside
+% openright,    openleft,  openany
+]{scrbook}		%{scrreprt}		%{scrbook}
+
+
+
+
+
+\usepackage[ngerman]{babel}							
+\usepackage{longtable}
+\usepackage{tabularx}	
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\usepackage{lmodern}
+\usepackage{siunitx}
+\usepackage{rotating}		% zum Querformat von Bildern
+\usepackage{graphicx}								
+\usepackage{amsmath}								
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{textcomp}	%zum aufrecht schreiben von griechischen buchstaben mit \textmu 
+\usepackage{rotating}  %für die Querformattabelle mit sidewaystable
+\usepackage{ifthen}
+\usepackage{multirow} 
+\usepackage{subfigure}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{pstricks}
+\onehalfspacing 
+
+\usepackage{geometry}
+
+\geometry{a4paper, top=30mm, left=27mm}
+
+% \geometry{a4paper, top=25mm, left=40mm, right=25mm, bottom=30mm,		%vollständige Geometrie Einstellungen
+% headsep=10mm, footskip=12mm}
+
+%\setlength{\hoffset}{0.0cm}		%verschiebt den Text 1 cm nach rechts, sodass es nach dem Binden symmetrischer ist
+
+
+% Kopf- und FuÃŸzeilen
+\usepackage[headsepline]{scrpage2}		% Paket, Linie unter Kopfangabe
+\clearscrheadfoot					% lÃ¶scht alle bisherigen Kopf- und FuÃŸzeilen
+\pagestyle{scrheadings}				% selbstgebastelte Kopf-/FuÃŸzeilen
+\automark{chapter}					% \automark[<rechte seite>]{<linke seite>}
+\ihead{\leftmark}						% setzt Kopfzeile (chapterangabe)
+\cfoot[-\,\pagemark\,-]{-\,\pagemark\,-}	% setzt FuÃŸzeile [] -> chapterseiten; {} -> alle anderen Seiten
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	Dokument	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		Deckblatt			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title	{Bachelorarbeit \\[2.5cm] Zweifachdampfprozesse mit Kalium und Wasser}
+\subtitle{Simulationen und vergleichende Exergieanalysen}			
+	
+\author	{		Autor:\\
+		Sarah Klähne (326530)	\\
+		Studiengang: Energie- und Prozesstechnik\\ \\ 
+		Technische Universität Berlin \\
+		Fachgebiet Energietechnik und Umweltschutz\\ \\
+		Betreuer:\\
+		Prof. Dr.-Ing. George Tsatsaronis\\
+		Dipl.-Ing. Mathias Hofmann}
+\date{10.\,April 2014}
+\begin{document}
+
+\newcommand{\n}{\mathrm}		% verkürzen des Befehls für aufrecht schreiben
+
+\newcommand{\f}{\mathbf}
+\newcommand{\tf}{\textbf}
+
+\setlength{\parindent}{0em} 				%Einrücken nach einem Absatz verhindert
+\maketitle
+% \section*{}								%Einfügen einer leeren Seite 
+\pagenumbering{roman}
+% \thispagestyle{empty} 					%Seite hat keine Seitenzahl wird aber mitgezählt
+% \newpage 				
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		Aufgabenstellung		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \chapter*{Aufgabenstellung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		Gewährleistungsauschluss			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Eidesstattliche Erklärung}
+Ich versichere hiermit an Eides statt, dass ich die vorliegende Bachelorarbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe.\par
+
+\vspace{3cm}
+
+Berlin, den 10. April 2014
+
+
+
+
+
+\setcounter{page}{3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		Zusammenfassung		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Zusammenfassung}
+In der vorliegenden Bachelorarbeit werden %drei Verschaltungsvarianten von Collier, Lojewski und Angelino für
+Zweifachdampfprozesse mit Wasser und Kalium betrachtet und durch Simulation und Exergieanalysen verglichen.
+\par
+Reine Wasserdampfprozesse stoßen aufgrund der Verdampfungseigenschaften des  Fluids  und der damit verbundenden Materialbelastung der Komponenten an die Optimierungsgrenze. Der Wirkungsgrad dieser Kreisläufe ist im Vergleich zu anderen Stromerzeugungsprozessen mit durchschnittlich 31\% niedrig. Wie vorangegangene Studien belegen, ergeben sich durch Zweifachdampfprozesse % mit dem zusätzlichen Medium Kalium 
+Steigerungen des Wirkungsgrades bis zu 50\%. \par 
+%Die Ergebnisse der Simulation und Exergieanalyse weisen im Einzelnen die stofflichen Eigenschaften von Kalium in Dampfprozessen nach. 
+Stoffeigenschaften und Studien zur Eignung in einem Zweifachdampfprozess unterschiedlicher Alkalimetalle und Quecksilber werden zusammengetragen. Kalium erweist sich als geeignetstes Fluid, da es einen niedrigen Dampfdruck bei hohen Temperaturen aufweist.\par
+Es werden drei Verschaltungsvarianten miteinander verglichen. In Anlehnung an die Prozesse von Collier, Lojewski und Angelino werden Prozesse simuliert und Exergieanalysen durchgeführt.
+Die Berechnung der verglichenen Verschaltungsvarianten führt zu Aussagen bezüglich der Exergievernichtung der verwendeten Komponenten und der untersuchten Verschaltung. Der Angelino-Prozess, in dem die Abwärme des Kaliums aus der zweiten Turbine für die Erhitzung des Wassderdampfkreislaufs genutzt wird, repräsentiert exergetisch und energetisch gesehen die sinnvollste Wahl. \par
+Die Arbeit bringt hervor, welchen Einfluss Zwischenerhitzung und Wärmeübertrager als Verknüpfung zwischen dem Kalium- und Wasserkreislauf für die Steigerung des Wirkungsgrades in Zweifachdampfprozessen haben. 
+Die Exergieanalyse zeigt, dass in jedem Prozess der Kaliumverdampfer die größte und die Wärmeübertrager zwischen dem Kalium- und Wasserkreislauf die nächst größere Exergievernichtung aufweisen. Daraus ergibt sich ein Verbesserungspotential der Komponenten. 
+
+
+
+%In dieser Bachelorarbeit werden drei unterschiedliche Prozesse einander gegen"-übergestellt  und  analysiert. Bei allen Prozessen handelt es sich um Zweifachdampfprozesse mit Kalium und Wasser. 
+%Es wird versucht werden mög\-liche Optimierungen in Karftwerksprozessen durch Exergie- und  Energieanalysen zu finden. Durch die Simulation der Prozesse anhand einer Computersoftware soll ein möglicher Entwurf für die zukünftige Bearbeitung des Themas gegeben werden.\par
+%Im ersten Teil der Arbeit wird auf die Wahl des Arbeitsmediums eingegangen, der Grund für die Verwendung eines weiteren Arbeitsmediums neben Wasser wird beleuchtet. Wird Wasser bei hohen Temperaturen in  Kraftwernken verwendet, neigt es zu Korrosion, wegen des zu hohen Druckes. Es wird festgestellt, dass Kalium ein geeignetes Fluid darstellt, vor allem wegen seines niedrigen Dampfdrucks bei hohen Prozesstemperaturen und damit entsteht nur ein vertretbares Maß an Korrosion. \par   
+%Die Grundlagen für die Exergieanalyse werden geschaffen. Es werden  Berechnungsmethoden der einzelnen Komponenten eines Kraftwerkes  aufgezeigt. \par
+%Da sich in der Vergangenheit unterschiedliche Wissenschaftler mit dem  Thema vertraut gemacht haben, werden ihre Gedanken der Prozessverschaltungen aufgezeigt. Im Kapitel Prozesse werden drei ausgewählte Möglichkeiten der Verschaltung in ihrer Funktionsweise näher erläutert und die Annahmen beleuchtet. 
+%Im Verlauf der Arbeit wird erklärt, welche Annahmen zur Vergleichbarkeit dieser drei Prozesse gemacht wurden und die Simulation wird vorgestellt. \par
+%Anhand der Ergebnisse der Simulation wird eine Exergieanalyse durchgeführt. Die aus der Exergieanalyse resultierenden Werte werden anhand unterschiedlicher Gesichtspunkte miteinander verglichen. Es stellt sich heraus, dass der Prozess, in dem die Abwärme des Kaliums aus der zweiten Turbine für die Erhitzung des Wassderdampfkreislaufes exergetisch und energetisch gesehen die sinnvollste Wahl darstellt. 
+%Das Arbeitsmedium Kalium wurde von einigen Wissenschaftlern hinsichtlich der Stoffeigenschaften untersucht und dabei wurde herausgefunden, dass es sich für einen Zweifachdampfprozess vor allem wegen der hohen Prozesstemeratur und dem niedrigen Dampfdruck eignen würde. \par
+
+%In der vorliegenden Bachelorarbeit wird die Simulation eines Zweifachdampfprozesses mit Kalium und Wasser und die darauf aufbauende Exergieanalyse dargestellt. Die Simulation stellt dabei einen Entwurf dar, auf welchen basierend in Zukunft ein vollständiger Kraftwerksprozess entwickelt werden kann.\par
+%Die Literaturrecherche hat zeigt, dass der Zweifachdampfprozess mit Kalium und Wasser aufgrund der höheren Prozesstemperatur und dem relativ kleinen Dampfdruck des Kaliumkreislaufes eine interessante Perspektive für die Zukunft bieten kann.\par
+
+%Ergebnisse der Exergieanalyse deuten daraufhin, an welchen Stellen der Prozess das größte Verbesserungspotential aufweist. So sollte der Wasserdampferzeuger hinsichtlich der minimalen Temperatur\-differenz verbessert werden, vor allem da dessen Anteil an der Gesamtexergievernichtung am größten ist und dieser den optimalen Kaliumkondensationsdruck verringert.  Außerdem könnte die Nieder- sowie die Hochdruckvorwärmung im Wasserkreislauf ergänzt und optimiert werden. Des Weiteren wäre es sinnvoll eine weitere Zwischenüberhitzung im Wasserkreislauf einzubauen, um diesen effizienter zu gestalten und den Kaliumkreislauf mehr Kondensationswärme entziehen zu können. Somit kann der Kaliumkondensationsdruck gesenkt werden ohne Kavitation in der Kaliumpumpe auszulösen.\par
+
+%Für die realisierte einfache Kondensationsstufe des Kaliums zeigen die Ergebnisse, dass der exergetische Wirkungsgrad des Gesamtprozesses im erheblichen Maße abhängig vom Kaliumkonden\-sationsdruck ist. Im betrachteten Bereich von  0,2 bis 0,4\,bar ist der exergetische Wirkungsgrad mit sinkendem Kondensationsdruck um mehr als 1,1 Prozentpunkte angestiegen. Die Parameteranalyse hat ergeben, dass ein optimaler Kaliumkondensationsdruck unterhalb von 0,2\,bar existiert. Um den Druck senken zu können, muss jedoch darauf geachtet werden, dass keine Kavitation in der Kaliumpumpe auftritt.
+\clearpage
+\section*{Abstract}
+In this thesis the design of a binary potassium-steam cycle is discussed and by simulation and analyse of exergy  compared. 
+Steam processes are limited, because of the evaporation properties of the water. The loads on the material is high and thus the components of the cycle are limited in the optimisation. 
+The efficiency of these cycles, compared to other processes for generating energy, are with 31\% low. As previous studies have shown, binary steam processes increases
+the efficiency up to 50\%.\par
+Material properties and studies on the suitability in a binary steam process of different alkali metals
+and mercury are gathered. Potassium is found to be the most appropriate fluid
+since it has a low vapor pressure at high temperatures.\par
+Three interconection models are compared to each other. Based on the processes of
+Collier, Lojewski and Angelino processes are simulated and exergy analysis are made.
+The calculation of the compared interconection variants leads to statements regarding the exergy destruction of the components used and the studied interconnection.
+It turns out, that the Angelino-process in which the waste heat of the potassium from the second turbine is used for the heating of the water cycle represents the most reasonable choice. This finding is based on energy and exergy analyse.\par
+The work presents which influence the reheating and heat exchanger have as a link between the potassium and water cycle for the increase of efficiency in binary steam processes. The exergy analysis shows that in every process the potassium evaporator has the largest and the heat exchanger between the potassium and the water cycle has the next larger exergy destruction. This results in an improvement of the components.
+%The subject of this thesis is the design of a binary potassium-steam cycle simulation, which allows to perform a exergetic analysis. 
+%Based on the results, perhaps in the future a complete power plant process will be developed. The Review of the literature shows that the binary potassium-steam process due to the higher process temperature and the relatively small vapor pressure of potassium cycle can provide an interesting perspective for the future.\par
+
+%Results of the exergetic analysis indicate the points at which the process has the greatest potential for improvement. The steam generator should be improved in terms of the minimum temperature difference. This would lower its destruction of exergy and raise the optimum of potassium condensing pressure. Also the low and the high pressure preheating in the water cycle could be improved. Furthermore, it would make sense to install a second reheater in the water cycle, making this more efficient and increasing the heat output of the potassium cycle. Thus, the potassium condensing pressure can be reduced without causing cavitation in the potassium pump.\par
+
+%For the realized simple condensation stage of potassium, the results show that the exergetic efficiency of the overall process dependents considerably on potassium condensation pressure. In the range from 0.2 to 0.4\,bar the exergetic efficiency is increased with decreasing condensation pressure by more than 1.1 percentage points. The parameter analysis also shows that an optimum potassium condensation pressure exists below 0.2\, bar. To reduce the pressure, it must be ensured that no cavitation occurs in the potassium pump.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents\listoffigures\listoftables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		Symbol- und Abkürzungssverzeichnis		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Symbolverzeichnis}
+\vspace{1cm}
+%\addcontentsline{toc}{chapter}{Symbolverzeichnis}					% fügt Punkt manuell zu einem Verzeichnis zu : (toc - Inhaltvz || lof Abb.vz || lot Abb.vz)
+\begin{tabular}{p{2cm}p{7cm}p{2cm}}
+ \hline
+ \multicolumn{3}{l}{\textbf{Lateinische Symbole}} \\
+  \hline
+\\
+%$c$			& Wärmekapazität						& [kJ/ kg$\cdot$K]				\\
+$E$			& Exergie								& [\si{J}]				\\
+$\dot{E}$		& Exergiestrom							& [\si{W}]			 	\\
+$e$			& massenspezifische Exergie				& [\si{J/kg}]			\\
+%$\overline{e}$	& molenspezifische Exergie				& [J/mol]			\\
+$h$			& massenspezifische Enthalpie				& [\si{J/kg}]			\\
+$\dot{H}$		& Enthalpiestrom						& [\si{W}]				\\
+%$M$			& molare Masse						& [g/mol]			\\
+$\dot{m}$		& Massenstrom							& [\si{kg/s}]			\\
+%$p$			& Druck								& [bar]			\\
+$\dot{Q}$		& Wärmestrom							& [\si{W}]				\\
+%$\overline{R}$	& ideale Gaskonstante					& [J/ mol$\cdot$K]		\\
+$s$			& massenspezifische Entropie				& [\si{J/kg}]			\\
+$\dot{S}$		& Entropiestrom						& [\si{W}]				\\
+$T$			& Temperatur							& [\si{K}]				\\
+$\dot{W}$		& Leistung							& [\si{W}]				\\
+$y^*_{\n{D}}$	& Exergievernichtungsquotient				& [$ - $]				\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \\
+  \hline
+ \multicolumn{3}{l}{\textbf{Griechische Symbole}} \\ 
+  \hline
+\\
+$\eta$		& energetischer Wirkungsgrad				  &  [$ - $] 				\\
+$\varepsilon$	& exergetischer Wirkungsgrad				  &  [$ - $] 				\\
+$\epsilon$ & Effektivität & [$-$] \\
+$\lambda$ & Oxidationsverhältnis bei der Verbrennung & [$ -$] \\
+$\sum$ & Summe& [$-$]\\
+$\Delta$ & Differenz & [$-$]\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tabular}
+\clearpage
+\begin{tabular}{p{2cm}p{7cm}p{2cm}}
+\\
+  \hline
+ \multicolumn{3}{l}{\textbf{Hochgestellte Indizes}} \\ 
+  \hline
+\\
+CH		& chemische (Exergie)				  &  		 					\\
+%Ges		& Gesamtenergie					  &  		 					\\
+K		& Kalium							  &  		 					\\
+KN		& kinetische (Exergie)				  &  		 					\\
+PH		& physikalische (Exergie)				  &  		 					\\
+PT		& potentielle (Exergie)				  &  		 					\\
+W		& Wasser							  &  		 					\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \\
+  \hline
+ \multicolumn{3}{l}{\textbf{Tiefgestellte Indizes}} \\ 
+  \hline
+\\
+%ab		& abgegeben						&  		 					\\
+aus		& Ausgangsstrom					&  		 					\\
+c		& kalt (cold)					  	&  		 					\\
+carnot	& Carnot (-"`Faktor"')					&							\\		
+CRP & Clausius-Rankine-Prozess & \\
+cv		& offenes System (controll volume System)	&  		 					\\
+D		& Vernichtung (destruction)		  		&  		 					\\
+ein		& Eingangsstrom					&  		 					\\
+el		& elektrisch						&  		 					\\
+F		&  Aufwand (fuel)					&  		 					\\
+gen		& Erzeugung (generate)				&  		 					\\
+ges & Gesamtleistung / Gesamtenergie & \\
+h		& heiß (hot)					 	&  		 					\\
+i & ideal&\\
+$j$		& $j$-ter Strom					  	&  		 					\\
+$k$		& $k$-te Komponente 				&  		 					\\
+%Kond		& Kondensator (-druck) 				&  		 					\\
+%übkrit	& überkritisch					&							\\	
+L		& Verlust (loss)					  	&  		 					\\
+m		& gemittelt							&  		 					\\
+max & maximal & \\
+mech	& mechanisch						&  		 					\\
+net		& Nettoleistung / Nettoenergie			&  		 					\\
+%p		& isobar (Wärmekapaiztät)				&  		 					\\
+P		& Nutzen (product)					&  		 					\\
+q		& auf Wärmetransport bezogen			&  		 					\\
+r & real & \\
+sys & System & \\
+WÜ & Wärmeübertrager & \\
+%S		& Siedepunkt						&  		 					\\
+%Sch		& Schmelzpunkt						&  		 					\\
+%tot		& Gesamtleistung / Gesamtenergie (total)	&  		 					\\
+%zapf		& Dampfanzapfung					&  		 					\\
+%ZDP		&Zweifachdampfprozess				&							\\
+%zu		& zugeführt						&  		 					\\
+0		& Umgebungsbedingungen			&  		 					\\
+\end{tabular}
+\clearpage
+
+\setboolean{@twoside}{true} 
+\pagenumbering{arabic}
+\input{Einleitung.tex}
+\clearpage
+\input{Grundlagen.tex}
+\clearpage
+\input{Prozesse.tex}
+\clearpage
+\input{Simu.tex}
+\clearpage
+\input{Ergebnisse1.tex}
+\clearpage
+\input{Auswertung2.tex}
+\clearpage
+\input{Fazit.tex}
+%#######################################################################################################################################
+% Literaturverzeichnis
+%#######################################################################################################################################
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\begin{thebibliography}{99}
+% \bibitem[1]{skript}		\textsc{Stemann}, Jan;\textsc{Kemmer}, Henning: \textit{Praktikum: Energie- Impuls- und Stofftransport}, 31.10.2010, 5. Auflage, April 2010
+% \bibitem[2]{VDI} \textit{VDI - Wärmeatlas}; VDI - Verlag; 5. Auflage ; Düsseldorf; 1988
+\bibitem[1]{wirkungsgrade} \textsc{Schiling}, H-D:\textit{Wie haben sich die Wirkungsgrade der Kohlekraftwerke entwickelt und was ist künftig zu erwarten ?}, Februar 2004; 
+%\bibitem[1]{Tsatsa}		\textsc{Bejan}, A.; \textsc{Tsataronis}, G.; \textsc{Moran}, M.: \textit{Thermal Design and Optimization}; Wiley; New York (u.a.); 1996
+\bibitem[2]{Thermoscript} \textsc{Tsataronis}, G.: \textit{Umdruck zur Vorlesung Thermodynamik I}; TU Berlin; 9. Auflage; April 2010
+\bibitem[3]{ET} \textsc{Tsataronis}, G.: \textit{Umdruck zur Vorlesung Energietechnik}; TU Berlin; April 2012
+\bibitem[4]{Angelino2006}	\textsc{Angelino}, G; \textsc{Invernizzi}, C.: \textit{Binary and ternary liquid metal-steam-cycles for high efficiency coal power stations.} In: Proceedings of the Institution of Mechanical Engineers, Part A: Journal of Power and Energy 220 (2006), Nr. 3, S. 195-205
+\bibitem[5]{Fraas1974}	\textsc{Fraas}, A.P.; \textsc{Brooks}, R.D.: \textit{Topping and Bottoming Cycles}; Sept. 1974
+%\bibitem[5]{Rajakovics1985}	\textsc{Rajakovics}, G.; \textsc{Maier}, W.: \textit{Karriere für drei Kreise? Der Dreifachdampfprozess}; In: Energie 37 (1985), Nr. 3, S. 90-95
+\bibitem[6]{Brockel1984}	\textsc{Brockel}, D. : \textit{Der Dreifachdampfprozess. Ein Konzept der Wirkungsgradverbesserung von Großkraftwerken} In: VGB Kraftwerkstechnik 64 (1984), Nr. 3, S. 201-210
+%\bibitem[7]{Ganic1977}	\textsc{Ganic}, E; \textsc{Seider}, W.: \textit{Computer simulation of potassium-stean combined-cycle, electrical power plants.} In: Computers and Chemical Engineering 1 (1977), Nr. 3, S. 161-169
+\bibitem[6]{Lojewski1989}	\textsc{Lojewski}, D; \textsc{Jansing}, W.: \textit{Der Zweifachdampfprozess: ein wirtschaftliches Konzept der Zukunft?} In: VGB Kraftwerkstechnik 69 (1989), Nr. 2, S. 138-147
+\bibitem[7]{Collier1974}    \textsc{Collier}, J.G. \textsc{Cox}, R.F. \textsc{Evans}, L.S. \textsc{Bainbridge}, G.R.: \textit{Potassium/steam cycle for a high efficiency gas-cooled reactor power ststion} In: Electrical Review (November 1974), S. 565-568
+\bibitem[8]{IEA} \textsc{IEA PUBLICATIONS} ;\textit{World Energy Outlook} In: (November 2012)
+%IEA PUBLICATIONS, 9 rue de la Fédération, 75739 Paris Cedex 15
+%Layout in France by Easy Catalogue - Printed in France by IEA
+\bibitem[9]{IEAK} \textsc{IEA};\textit{Key World Energy Statistics} In: Frankreich, Paris; 2013 ;URL: $http://www.iea.org/publications/freepublications/publication/KeyWorld2013\_FINAL\_WEB.pdf$, abgerufen: 20.11.2013
+\bibitem[8]{sauderson} \textsc{Sauderson}, D.J.; \textsc{Budimann}, R.A.: \textit{Analysis of binary cycle efficiencyusing Redlich-Kwong equation of state} In: Proc.IMechE Vol.225 Part A: J.Power and Energy, Februar 2011, S 567-578
+\bibitem[10]{rajakovics} \textsc{Rajakovics}, G.E.; \textit{Extrem hohe Kraftwerkswirkungsgrade durch Dreifach-Dampfprozeß} In: ÖZE; Jg.27; Heft 4 (April 1974), S. 102-126
+\bibitem[11]{Fraas1966} \textsc{Fraas}, A.P.; \textit{a potassium-steam binary vapor cycle for a molten-salt reactor power plant} In: Journal of Engineering for Power; (October 1966) S.355-366
+\bibitem[12]{lojewski} \textsc{Lojewski}, D. von ; \textsc{Urban}, H.: \textit{Der Zweistoff-Dampfprozeß mit Kalium-/Wasserdampfkreislauf} In: VGB (Hrsg.): Jahrbuch der Dampferzeugungstechnik . Essen: Vulkan, 1989 (6), S. 79-101
+\bibitem[13]{Fraas1973} \textsc{Fraas}, A.P.; \textit{a potassium-steam binary vapor cycle for a better fuel economy and reduced thermal pollution In: Journal of Engineering for Power}; (Januar 1973) S.35-63
+\bibitem[14]{IEAn} \textit{International Energy Agency FOSSIL FUEL-FIRED POWER GENERATION 2007}
+\bibitem[15]{stoff} \textit{Potassium WebElements: the periodic table on the web}; URL: http://www.webelements.com/potassium/ , abgerufen: 20.11.2013
+\bibitem[16]{steampower} \textsc{Spliethoff}, H. \textit{Steam Power Stations for Electricity and Heat Generation}, IN: \texttt{Power Generation from Solid Fuels}; 2010, S. 206- 219
+\bibitem[17]{sodium} \textsc{Foust}, O. J.; \textit{Sodium-NaK Engineering Handbook}, \textit{Sodium Chemistry and Physical Properties}, ...
+%\bibitem[9]{Angelino2004}	\textsc{Angelino}, G; \textsc{Invernizzi}, C.: \textit{Ejector-assisted liquid metal topping cycles} In: Proceedings of the Institution of Mechanical Engineers, Part A: Journal of Power and Energy 218 (2004), S. 111-121
+\bibitem[18]{Angelino2008}	\textsc{Angelino}, G; \textsc{Invernizzi}, C.: \textit{Binary conversion cycles for concentrating solar power technology.} In: Solar Energy 82(2008), Nr. 7, S. 637-647
+\bibitem[19]{Brockel1984}	\textsc{Brockel}, D. : \textit{Der Dreifachdampfprozess. Ein Konzept der Wirkungsgradverbesserung von Großkraftwerken} In: VGB Kraftwerkstechnik 64 (1984), Nr. 3, S. 201-210
+%\bibitem[11]{Sterling} \textsc{Heise:} Stirlingmotor beflügelt Solarkraftwerke / Heise online  Version: 28.01.2010, 17:13       http://www.heise.de/newsticker/meldung/Stirlingmotor-befluegelt-Solarkraftwerke-916656.html  (abgerufen: 21.08.2012)
+%\bibitem[12]{Nist} \textsc{Nist:} Nist / National Institute of Standards and Technology  Version: Febr.2012       http://kinetics.nist.gov/kinetics/index.jsp  (abgerufen: 22.08.2012)
+%\bibitem[13]{Strauss}	\textsc{Strauß}, Karl; \textit{Kraftwerkstechnik}; Springer, 6 Auflage; Heidelberg 
+%\bibitem[14]{Energiepolitik} \textsc{Reiche}, Danyel; \textit{Grundlagen der Energiepolitik}; Peter Lang - Europäischer Verlag der Wissenschaften, 2005; Frankfurt am Main
+%\bibitem[15]{Kraftwerkstechnik}		\textsc{Czielsa}, Frank: \textit{Skript für Kraftwerkstechnik}; TU Berlin; 2006
+%\bibitem[16]{bgr}				\textsc{Bundesanstalt für Geowissenschaften und Rohstoffe}: Reserven, Ressourcen und Verfügbarkeit von Energierohstoffen; 2010; Hannover
+%\bibitem[17]{VDI}		\textit{VDI-Wärmeatlas}; Springer; 10. Auflage; Heidelberg, 2006
+%\bibitem[18]{Traupel}	\textsc{Traupel}, W.; \textit{Thermische Turbomaschinen - Band 1}; Springer; 3. Auflage; Berlin, 1977
+% \bibitem[8]{quaschning}  \textsc{Quaschning}, Volker; \textit{Erneuerbare Energien und Klimaschutz}; Hanser; München; 2008
+\end{thebibliography}
+
+%#######################################################################################################################################
+% Anhang 
+%#######################################################################################################################################
+\chapter*{Anhang}
+\thispagestyle{empty}
+%\begin{table}[htb]
+%	\centering 
+%	     \caption{Thermodynamische Daten der Stoffströme des Kaliumkreislaufes}
+%		\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+%			\hline
+%			&  &  $\dot{\textbf{\textit{m}}}_{}$& $\textbf{T}$ & $\textbf{\textit{p}}$  & ${\textbf{\textit{h}}}_{}$ & $\textbf{\textit{s}}$ & ${\textbf{\textit{e}}}_{} $ \footnotemark[1] & $\dot{\textbf{\textit{E}}}$ \footnotemark[1] \\
+%			\textbf{Medium} & \textbf{Strom} & \textbf{[kg/s]} & \textbf{[°C]} & \textbf{[bar]} & \textbf{[kJ/kg]} & \textbf{[kJ/(kgK)]} & \textbf{[MJ/kg]} & \textbf{[MW]} \\
+%			\hline
+%			Kalium & $0$ & $1,0$ & $288,15$ & $1,01$ & $203,76$ & $0,2551$ & $0,00$ & $0,00$\\
+%			\hline
+%			Wasser & $0$ & $1,0$ & $288,15$ & $1,01$ & $-15907,63$ & $-9,1994$ & $0,00$ & $0,00$\\
+%			\hline
+%			Rauchgas & $0$ & $1,0$ & $288,15$ & $1,01$ & $-2644,24$ & $0,1210$ & $0,00$ & $0,00$\\
+%			\hline
+%			Kalium & $1$ & $130,0$ & $495,50$ & $2,45$ & $558,39$ & $0,9798$ & $0,146$ & $18,953$\\
+%			\hline
+%			Kalium & $2$ & $130,0$ & $826,50$ & $2,23$ & $810,37$ & $1,2520$ & $0,319$ & $41,515$\\
+%			\hline
+%			Kalium & $3$ & $130,0$ & $827,00$ & $2,12$ & $2695,51$ & $2,9729$ & $1,709$ & $222,116$\\
+%			\hline
+%			Kalium & $4$ & $130,0$ & $850,00$ & $2,12$ & $2708,06$ & $2,9842$ & $1,718$ & $223,325$\\
+%			\hline
+%			Kalium & $5$ & $130,0$ & $660,60$ & $0,50$ & $2460,73$ & $3,0310$ & $1,457$ & $189,421$\\
+%			\hline
+%			Kalium & $6$ & $119,6$ & $660,60$ & $0,50$ & $2615,82$ & $3,1971$ & $1,564$ & $187,054$\\
+%			\hline
+%			Kalium & 6a & $10,4$ & $660,60$ & $0,50$ & $681,71$ & $1,1257$ & $0,227$ & $2,367$\\
+%			\hline
+%			Kalium & 6b & $10,4$ & $581,16$ & $0,20$ & $681,71$ & $1,1289$ & $0,226$ & $2,357$\\
+%			\hline
+%			Kalium & $7$ & $119,6$ & $581,16$ & $0,20$ & $2473,63$ & $3,2264$ & $1,414$ & $169,039$\\
+%			\hline
+%			Kalium & $8$ & $130,0$ & $581,16$ & $0,20$ & $2329,94$ & $3,0582$ & $1,318$ & $171,396$\\
+%			\hline
+%			Kalium & $9$ & $130,0$ & $581,16$ & $0,20$ & $2025,62$ & $2,7020$ & $1,117$ & $145,178$\\
+%			\hline
+%			Kalium & $10$ & $130,0$ & $581,16$ & $0,20$ & $1000,14$ & $1,5017$ & $0,437$ & $56,831$\\
+%			\hline
+%			Kalium & $11$ & $130,0$ & $581,16$ & $0,20$ & $983,71$ & $1,4824$ & $0,426$ & $55,416$\\
+%			\hline
+%			Kalium & $12$ & $130,0$ & $495,09$ & $0,20$ & $557,54$ & $0,9795$ & $0,145$ & $18,852$\\
+%			\hline
+%			Kalium & $13$ & $130,0$ & $495,48$ & $2,45$ & $558,37$ & $0,9798$ & $0,146$ & $18,952$\\
+%			\hline
+%			Wasser & I & $87,5$ & $265,00$ & $284,50$ & $-14812,65$ & $-6,5517$ & $0,332$ & $29,053$\\
+%			\hline
+%			Wasser & II & $87,5$ & $373,00$ & $278,50$ & $-14179,48$ & $-5,4876$ & $0,659$ & $57,626$\\
+%			\hline
+%			Wasser & III & $87,5$ & $373,00$ & $278,50$ & $-14179,48$ & $-5,4876$ & $0,659$ & $57,626$\\
+%			\hline
+%			Wasser & IV & $87,5$ & $374,00$ & $264,50$ & $-14155,07$ & $-5,4458$ & $0,671$ & $58,709$\\
+%			\hline
+%			Wasser & V & $87,5$ & $374,00$ & $264,50$ & $-14155,07$ & $-5,4458$ & $0,671$ & $58,709$\\
+%			\hline
+%			Wasser & VI & $87,5$ & $550,00$ & $250,00$ & $-12631,50$ & $-3,2423$ & $1,560$ & $136,462$\\
+%			\hline
+%			Wasser & VII & $87,5$ & $379,47$ & $84,50$ & $-12901,01$ & $-3,1852$ & $1,274$ & $111,443$\\
+%			\hline
+%			Wasser & VIII & $87,5$ & $550,00$ & $80,00$ & $-12448,87$ & $-2,5439$ & $1,541$ & $134,836$\\
+%			\hline
+%			Rauchgas & RG-1 & $1258,4$ & $1000,00$ & $1,00$ & $-1538,60$ & $1,7442$ & $0,638$ & $802,725$\\
+%			\hline
+%			Rauchgas & RG-2 & $1258,4$ & $998,95$ & $1,00$ & $-1539,90$ & $1,7432$ & $0,637$ & $801,463$\\
+%			\hline
+%			Rauchgas & RG-3 & $1258,4$ & $840,00$ & $1,00$ & $-1734,65$ & $1,5797$ & $0,489$ & $615,679$\\
+%			\hline
+%			Rauchgas & RG-4 & $1258,4$ & $818,46$ & $1,00$ & $-1760,68$ & $1,5561$ & $0,470$ & $591,484$\\
+%			\hline
+%		\end{tabular}
+%	\label{tab.KDK}
+%\end{table}
+ % \footnotetext[1]{stellt die physikalische Exergie dar}
+%\thispagestyle{empty}
+%\clearpage
+%\thispagestyle{empty}
+\begin{table}[htb]
+	\centering
+	\caption{Thermodynamische Daten der Stoffströme des Wasserkreislaufes (a)}
+		\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+			\hline
+			&  &  $\dot{\textbf{\textit{m}}}_{}$& $\textbf{T}$ & $\textbf{\textit{p}}$  & ${\textbf{\textit{h}}}_{}$ & $\textbf{\textit{s}}$ & ${\textbf{\textit{e}}}_{} $ \footnotemark[1] & $\dot{\textbf{\textit{E}}}$ \footnotemark[1] \\
+			\textbf{Medium} & \textbf{Strom} & \textbf{[kg/s]} & \textbf{[°C]} & \textbf{[bar]} & \textbf{[kJ/kg]} & \textbf{[kJ/(kgK)]} & \textbf{[MJ/kg]} & \textbf{[MW]} \\
+			\hline
+			Wasser & $1$ & $87,5$ & $550,00$ & $250,00$ & $3339,28$ & $6,1817$ & $1,560$ & $136,468$\\
+		\hline
+			Wasser & $2$ & $87,5$ & $379,47$ & $84,50$ & $3069,64$ & $6,2385$ & $1,274$ & $111,440$\\
+			\hline
+			Wasser & $3$ & $87,5$ & $550,00$ & $80,00$ & $3521,77$ & $6,8798$ & $1,541$ & $134,834$\\
+			\hline
+			Wasser & $4$ & $73,3$ & $461,00$ & $45,00$ & $3349,74$ & $6,9120$ & $1,360$ & $99,630$\\
+			\hline
+			Wasser & $5$ & $68,9$ & $269,19$ & $10,00$ & $2985,28$ & $7,0056$ & $0,968$ & $66,677$\\
+			\hline
+			Wasser & $6$ & $65,1$ & $150,00$ & $3,00$ & $2761,17$ & $7,0790$ & $0,723$ & $47,076$\\
+			\hline
+			Wasser & $7$ & $61,4$ & $103,31$ & $1,14$ & $2612,30$ & $7,1330$ & $0,559$ & $34,295$\\
+			\hline
+			Wasser & $8$ & $57,6$ & $71,58$ & $0,33$ & $2445,51$ & $7,1989$ & $0,373$ & $21,479$\\
+			\hline
+			Wasser & $9$ & $57,6$ & $32,88$ & $0,05$ & $2225,12$ & $7,2971$ & $0,124$ & $7,148$\\
+			\hline
+			Wasser & $10$ & $57,6$ & $32,88$ & $0,05$ & $137,77$ & $0,4763$ & $0,002$ & $0,123$\\
+			\hline
+			Wasser & $11$ & $57,6$ & $32,92$ & $7,23$ & $138,61$ & $0,4767$ & $0,003$ & $0,165$\\
+			\hline
+			Wasser & $12$ & $57,6$ & $66,58$ & $7,15$ & $279,28$ & $0,9127$ & $0,018$ & $1,030$\\
+			\hline
+			Wasser & $13$ & $61,4$ & $66,89$ & $7,15$ & $280,58$ & $0,9165$ & $0,018$ & $1,110$\\
+			\hline
+			Wasser & $14$ & $61,4$ & $98,31$ & $7,08$ & $412,43$ & $1,2874$ & $0,043$ & $2,644$\\
+			\hline
+			Wasser & $15$ & $65,1$ & $98,60$ & $7,08$ & $413,65$ & $1,2907$ & $0,043$ & $2,822$\\
+			\hline
+			Wasser & $16$ & $65,1$ & $128,53$ & $7,00$ & $540,39$ & $1,6186$ & $0,076$ & $4,922$\\
+			\hline
+			Wasser & $17$ & $68,9$ & $128,77$ & $7,00$ & $541,43$ & $1,6212$ & $0,076$ & $5,226$\\
+			\hline
+			Wasser & $18$ & $87,5$ & $164,95$ & $7,00$ & $697,14$ & $1,9921$ & $0,125$ & $10,913$\\
+			\hline
+			Wasser & $19$ & $87,5$ & $169,66$ & $291,00$ & $733,89$ & $2,0045$ & $0,158$ & $13,814$\\
+			\hline
+			Wasser & $20$ & $87,5$ & $183,33$ & $290,00$ & $792,45$ & $2,1350$ & $0,179$ & $15,648$\\
+			\hline
+			Wasser & $21$ & $87,5$ & $248,27$ & $286,00$ & $1080,01$ & $2,7246$ & $0,297$ & $25,946$\\
+			\hline
+			Wasser & $22$ & $87,5$ & $265,00$ & $284,50$ & $1157,90$ & $2,8719$ & $0,332$ & $29,046$\\
+			\hline
+			Wasser & 101a & $14,2$ & $461,00$ & $45,00$ & $3349,74$ & $6,9120$ & $1,360$ & $19,339$\\
+			\hline
+			Wasser & 101b & $14,2$ & $272,66$ & $42,00$ & $2870,61$ & $6,1813$ & $1,091$ & $15,519$\\
+			\hline
+			Wasser & 101c & $14,2$ & $253,27$ & $42,00$ & $1101,63$ & $2,8232$ & $0,290$ & $4,121$\\
+			\hline
+			Wasser & 101d & $14,2$ & $174,66$ & $41,00$ & $741,36$ & $2,0834$ & $0,143$ & $2,029$\\
+			\hline
+			Wasser & 101e & $14,2$ & $164,95$ & $7,00$ & $741,36$ & $2,0930$ & $0,140$ & $1,989$\\
+			\hline
+			Wasser & 102a & $4,4$ & $269,19$ & $10,00$ & $2985,28$ & $7,0056$ & $0,968$ & $4,271$\\
+			\hline
+			Wasser & 102b & $4,4$ & $264,69$ & $7,00$ & $2985,28$ & $7,1659$ & $0,922$ & $4,068$\\
+			\hline
+			Wasser & 103a & $3,7$ & $150,00$ & $3,00$ & $2761,17$ & $7,0790$ & $0,723$ & $2,709$\\
+			\hline
+			Wasser & 103b & $3,7$ & $132,95$ & $2,95$ & $559,01$ & $1,6658$ & $0,081$ & $0,302$\\
+			\hline
+		Wasser & 103c & $3,7$ & $133,01$ & $7,00$ & $559,52$ & $1,6659$ & $0,081$ & $0,304$\\
+			\hline
+			Wasser & 104a & $3,7$ & $103,31$ & $1,14$ & $2612,30$ & $7,1330$ & $0,559$ & $2,075$\\
+			\hline
+			Wasser & 104b & $3,7$ & $103,31$ & $1,14$ & $433,07$ & $1,3443$ & $0,047$ & $0,176$\\
+			\hline
+			Wasser & 104c & $3,7$ & $103,38$ & $7,08$ & $433,81$ & $1,3446$ & $0,048$ & $0,178$\\
+			\hline
+			Wasser & 105a & $3,8$ & $71,58$ & $0,33$ & $2445,51$ & $7,1989$ & $0,373$ & $1,408$\\
+			\hline
+			Wasser & 105b & $3,8$ & $71,58$ & $0,33$ & $299,65$ & $0,9743$ & $0,021$ & $0,077$\\
+			\hline
+			Wasser & 105c & $3,8$ & $71,65$ & $7,15$ & $300,47$ & $0,9746$ & $0,021$ & $0,080$\\
+			\hline
+		\end{tabular}
+	\label{tab.WDKa}
+\end{table}
+\clearpage
+\thispagestyle{empty}
+
+%\begin{table}[htb]
+%\begin{longtable}
+	\small
+%	\caption{Thermodynamische Daten der Stoffströme der Simulation von Lojewski}
+%\begin{tabular}{|r|r|r|r|r|r|r|r|r|r|}
+\begin{longtable}{|r|r|r|r|r|r|r|r|r|r|}
+
+\caption{Thermodynamische Daten der Stoffströme der Simulation von Lojewski}\\
+\hline
+Pipe & Medium & $\dot{\textbf{\textit{m}}}_{}$ & $\dot{\textbf{\textit{n}}}_{}$ & $\dot{\textbf{\textit{V}}}_{}$ & $\textbf{\textit{p}}$ & $\textbf{\textit{T}}$ & $\textbf{\textit{h}}$ & $\textbf{\textit{s}}$ & x \\
+\hline
+NO & TYPE & [kg/s] & [kmol/s] & [m3/s] & [bar] & [°C] & [kJ/kg] & [kJ/kgK] & [\%] \endhead
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+1 & Kalium & 200,6583 & 5,1317 & 192,37 & 2,24 & 850 & 2769,5 & 4,5247 & 100 \\
+\hline
+1a  &   &   &   & 192,37 & 2,24 & 850 & 2769,5 & 4,5247 & 100 \\
+\hline
+2 & Kalium & 200,6583 & 5,1317 & 456,91 & 0,8 & 731,77 & 2590,38 & 4,549 & 92,26 \\
+\hline
+2a  &   &   &   & 456,91 & 0,8 & 731,77 & 2590,38 & 4,549 & 92,26 \\
+\hline
+3 & Kalium & 185,13 & 4,7345 & 456,89 & 0,8 & 731,77 & 2741,3 & 4,6991 & 100 \\
+\hline
+3a  &   &   &   & 456,89 & 0,8 & 731,77 & 2741,3 & 4,6991 & 100 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+4 & Kalium & 185,13 & 4,7345 & 1231,2 & 0,25 & 625,57 & 2555,95 & 4,7272 & 92,11 \\
+\hline
+ 4a &   &   &   & 1231,2 & 0,25 & 625,57 & 2555,95 & 4,7272 & 92,11 \\
+\hline
+5 & Kalium & 170,5176 & 4,3608 & 1231,2 & 0,25 & 625,57 & 2714,22 & 4,9032 & 100 \\
+\hline
+ 5a &   &   &   & 1231,2 & 0,25 & 625,57 & 2714,22 & 4,9032 & 100 \\
+\hline
+7 & Kalium & 170,5176 & 4,3608 & 4232,4 & 0,06 & 522,93 & 2508,59 & 4,9384 & 91,37 \\
+\hline
+ 7a &   &   &   & 4232,4 & 0,06 & 522,93 & 2508,59 & 4,9384 & 91,37 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+8 & Kalium & 15,528 & 0,39712 & 0,02318 & 0,8 & 731,77 & 791 & 2,7596 & 0 \\
+\hline
+  8a&   &   &   & 32,903 & 0,06 & 522,93 & 791 & 2,7823 & 7,8 \\
+\hline
+9 & Kalium & 14,612 & 0,3737 & 0,02099 & 0,25 & 625,57 & 709,1 & 2,6736 & 0 \\
+\hline
+9a  &   &   &   & 15,146 & 0,06 & 522,93 & 709,1 & 2,6795 & 3,81 \\
+\hline
+27 & Kalium & 200,658 & 5,1317 & 4280,5 & 0,06 & 522,93 & 2244,63 & 4,607 & 78,53 \\
+\hline
+27a  &   &   &   & 4280,5 & 0,06 & 522,93 & 2244,63 & 4,607 & 78,53 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+28 & Kalium & 200,658 & 5,1317 & 0,27796 & 0,06 & 520,1 & 628,63 & 2,5784 & 0 \\
+\hline
+28a  &   &   &   & 0,27796 & 0,06 & 520,1 & 628,63 & 2,5784 & 0 \\
+\hline
+29 & Kalium & 200,658 & 5,1317 & 0,27796 & 7,7 & 520,11 & 628,64 & 2,5784 & 0 \\
+\hline
+29a  &   &   &   & 0,27796 & 5,54 & 520,11 & 628,64 & 2,5784 & 0 \\
+\hline
+30 & Wasser & 188,1246 & 10,443 & 2,0594 & 216 & 440 & 2983,15 & 5,7685 & 100 \\
+\hline
+30a  &   &   &   & 2,0594 & 216 & 439,99 & 2983,15 & 5,7685 & 100 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+31 & Wasser & 188,1246 & 10,443 & 2,8354 & 215 & 545 & 3364,19 & 6,271 & 100 \\
+\hline
+31a  &   &   &   & 2,8354 & 215 & 545 & 3364,19 & 6,271 & 100 \\
+\hline
+32 & Wasser & 169,8852 & 9,4301 & 10,582 & 37 & 288,32 & 2939,26 & 6,3564 & 100 \\
+\hline
+32a  &   &   &   & 10,582 & 37 & 288,32 & 2939,26 & 6,3564 & 100 \\
+\hline
+33 & Wasser & 18,2394 & 1,0124 & 0,68064 & 70 & 370,99 & 3078,96 & 6,3284 & 100 \\
+\hline
+33a  &   &   &   & 0,68064 & 70 & 370,99 & 3078,96 & 6,3284 & 100 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+34 & Wasser & 19,2061 & 1,0661 & 1,1963 & 37 & 288,32 & 2939,26 & 6,3564 & 100 \\
+\hline
+34a  &   &   &   & 1,1963 & 37 & 288,32 & 2939,26 & 6,3564 & 100 \\
+\hline
+35 & Wasser & 150,6791 & 8,364 & 9,3853 & 37 & 288,32 & 2939,26 & 6,3564 & 100 \\
+\hline
+35a  &   &   &   & 9,3853 & 37 & 288,32 & 2939,26 & 6,3564 & 100 \\
+\hline
+36 & Wasser & 150,6791 & 8,364 & 15,455 & 36 & 545 & 3552,6 & 7,2735 & 100 \\
+\hline
+36a  &   &   &   & 15,455 & 36 & 545 & 3552,6 & 7,2735 & 100 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+37 & Wasser & 9,4931 & 0,52695 & 2,1724 & 13,33 & 399,66 & 3258,33 & 7,3271 & 100 \\
+\hline
+ 37a &   &   &   & 2,1724 & 13,33 & 399,66 & 3258,33 & 7,3271 & 100 \\
+\hline
+38 & Wasser & 141,186 & 7,837 & 67,309 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+ 38a &   &   &   & 67,309 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+39 & Wasser & 6,1158 & 0,33948 & 2,9156 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+ 39a &   &   &   & 3,1476 & 4,91 & 281,91 & 3027,48 & 7,4039 & 100 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+40 & Wasser & 135,0702 & 7,4976 & 64,393 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+ 40a &   &   &   & 64,393 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+41 & Wasser & 126,762 & 7,0364 & 60,432 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+ 41a &   &   &   & 60,432 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+42 & Wasser & 6,272 & 0,34815 & 5,8202 & 2,33 & 201,03 & 2871,29 & 7,4395 & 100 \\
+\hline
+ 42a &   &   &   & 5,8202 & 2,33 & 201,03 & 2871,29 & 7,4395 & 100 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+43 & Wasser & 5,0336 & 0,27941 & 9,5772 & 0,95 & 122,75 & 2722,66 & 7,5063 & 100 \\
+\hline
+ 43a &   &   &   & 9,5772 & 0,95 & 122,75 & 2722,66 & 7,5063 & 100 \\
+\hline
+44 & Wasser & 3,9785 & 0,22084 & 15,631 & 0,4 & 75,86 & 2598,77 & 7,5622 & 98,39 \\
+\hline
+44a  &   &   &   & 15,631 & 0,4 & 75,86 & 2598,77 & 7,5622 & 98,39 \\
+\hline
+45 & Wasser & 3,1814 & 0,17659 & 25,603 & 0,18 & 57,8 & 2494,3 & 7,6092 & 95,31 \\
+\hline
+ 45a &   &   &   & 25,603 & 0,18 & 57,8 & 2494,3 & 7,6092 & 95,31 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+46 & Wasser & 2,0173 & 0,11198 & 31,965 & 0,085 & 42,66 & 2402,8 & 7,6504 & 92,69 \\
+\hline
+ 46a &   &   &   & 31,965 & 0,085 & 42,66 & 2402,8 & 7,6504 & 92,69 \\
+\hline
+47 & Wasser & 106,2792 & 5,8994 & 3192,6 & 0,042 & 29,81 & 2322,13 & 7,6866 & 90,41 \\
+\hline
+  47a&   &   &   & 3192,6 & 0,042 & 29,81 & 2322,13 & 7,6866 & 90,41 \\
+\hline
+48 & Wasser & 114,587 & 6,3606 & 3444,2 & 0,042 & 29,81 & 2323,41 & 7,6908 & 90,46 \\
+\hline
+ 48a &   &   &   & 3444,2 & 0,042 & 29,81 & 2323,41 & 7,6908 & 90,46 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+49 & Wasser & 114,587 & 6,3606 & 0,11509 & 0,042 & 29,81 & 124,94 & 0,4341 & 0 \\
+\hline
+ 49a &   &   &   & 0,11509 & 0,042 & 29,81 & 124,94 & 0,4341 & 0 \\
+\hline
+50 & Wasser & 114,587 & 6,3606 & 0,11505 & 7,41 & 29,88 & 125,93 & 0,435 & 0 \\
+\hline
+ 50a &   &   &   & 0,11505 & 7,41 & 29,88 & 125,93 & 0,435 & 0 \\
+\hline
+51 & Wasser & 114,587 & 6,3606 & 0,11544 & 6,91 & 39,66 & 166,75 & 0,5677 & 0 \\
+\hline
+ 51a &   &   &   & 0,11544 & 6,91 & 39,66 & 166,75 & 0,5677 & 0 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+52 & Wasser & 135,07 & 7,4976 & 0,1361 & 6,91 & 40,13 & 168,69 & 0,5739 & 0 \\
+\hline
+ 52a &   &   &   & 0,1361 & 6,91 & 40,13 & 168,69 & 0,5739 & 0 \\
+\hline
+53 & Wasser & 135,07 & 7,4976 & 0,13698 & 6,41 & 54,8 & 229,93 & 0,7651 & 0 \\
+\hline
+ 53a &   &   &   & 0,13698 & 6,41 & 54,8 & 229,93 & 0,7651 & 0 \\
+\hline
+54 & Wasser & 135,07 & 7,4976 & 0,13834 & 5,91 & 72,86 & 305,44 & 0,9894 & 0 \\
+\hline
+ 54a &   &   &   & 0,13834 & 5,91 & 72,86 & 305,44 & 0,9894 & 0 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+55 & Wasser & 135,07 & 7,4976 & 0,14041 & 5,41 & 95,18 & 399,12 & 1,2519 & 0 \\
+\hline
+ 55a &   &   &   & 0,14041 & 5,41 & 95,18 & 399,12 & 1,2519 & 0 \\
+\hline
+56 & Wasser & 135,07 & 7,4976 & 0,14346 & 4,91 & 122,11 & 512,94 & 1,5503 & 0 \\
+\hline
+ 56a &   &   &   & 0,14346 & 4,91 & 122,11 & 512,94 & 1,5503 & 0 \\
+\hline
+57 & Wasser & 6,272 & 0,34815 & 0,00654 & 2,33 & 100,18 & 419,95 & 1,3089 & 0 \\
+\hline
+ 57a &   &   &   & 0,04858 & 0,95 & 98,18 & 419,95 & 1,3094 & 0,38 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+58 & Wasser & 11,306 & 0,62756 & 0,01162 & 0,95 & 77,86 & 326 & 1,0498 & 0 \\
+\hline
+ 58a &   &   &   & 0,1757 & 0,4 & 75,86 & 326 & 1,0501 & 0,36 \\
+\hline
+59 & Wasser & 15,284 & 0,8484 & 0,01554 & 0,4 & 59,8 & 250,33 & 0,8287 & 0 \\
+\hline
+ 59a &   &   &   & 0,47328 & 0,18 & 57,8 & 250,33 & 0,8288 & 0,35 \\
+\hline
+60 & Wasser & 18,465 & 1,025 & 0,01865 & 0,18 & 45,13 & 188,99 & 0,6403 & 0 \\
+\hline
+ 60a &   &   &   & 1,3755 & 0,085 & 42,66 & 188,99 & 0,6405 & 0,43 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+61 & Wasser & 20,483 & 1,137 & 0,02067 & 0,085 & 42,66 & 178,68 & 0,6078 & 0 \\
+\hline
+ 61a &   &   &   & 0,02067 & 0,085 & 42,66 & 178,68 & 0,6078 & 0 \\
+\hline
+62 & Wasser & 20,483 & 1,137 & 0,02066 & 6,91 & 42,74 & 179,59 & 0,6086 & 0 \\
+\hline
+ 62a &   &   &   & 0,02066 & 6,91 & 42,74 & 179,59 & 0,6086 & 0 \\
+\hline
+63 & Wasser & 188,125 & 10,443 & 0,20539 & 4,91 & 151,15 & 637,23 & 1,8537 & 0 \\
+\hline
+  63a&   &   &   & 0,20539 & 4,91 & 151,15 & 637,23 & 1,8537 & 0 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+64 & Wasser & 188,125 & 10,443 & 0,20328 & 238 & 154,72 & 667 & 1,8641 & 0 \\
+\hline
+ 64a &   &   &   & 0,20328 & 238 & 154,72 & 667 & 1,8641 & 0 \\
+\hline
+65 & Wasser & 188,125 & 10,443 & 0,2118 & 237 & 192,77 & 830,53 & 2,2304 & 0 \\
+\hline
+ 65a &   &   &   & 0,2118 & 237 & 192,77 & 830,53 & 2,2304 & 0 \\
+\hline
+66 & Wasser & 188,125 & 10,443 & 0,22795 & 236 & 245,78 & 1067,53 & 2,7122 & 0 \\
+\hline
+ 66a &   &   &   & 0,22795 & 236 & 245,78 & 1067,53 & 2,7122 & 0 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+67 & Wasser & 188,125 & 10,443 & 0,24575 & 235 & 285,83 & 1259,49 & 3,0686 & 0 \\
+\hline
+ 67a &   &   &   & 0,24575 & 235 & 285,83 & 1259,49 & 3,0686 & 0 \\
+\hline
+68 & Wasser & 18,239 & 1,0124 & 0,02285 & 70 & 252,78 & 1099,09 & 2,8117 & 0 \\
+\hline
+ 68a &   &   &   & 0,04138 & 37 & 245,78 & 1099,09 & 2,82 & 1,95 \\
+\hline
+69 & Wasser & 37,446 & 2,0786 & 0,04321 & 37 & 199,77 & 852,23 & 2,3252 & 0 \\
+\hline
+ 69a &   &   &   & 0,13291 & 13,33 & 192,77 & 852,23 & 2,3315 & 1,64 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+70 & Wasser & 46,939 & 2,6055 & 0,0518 & 13,33 & 161,72 & 683,45 & 1,9591 & 0 \\
+\hline
+  70a&   &   &   & 0,44212 & 4,91 & 151,15 & 683,45 & 1,9626 & 2,19 \\
+\hline
+80 & Wasser & 1367,031 & 75,882 & 1,3621 & 100 & 15,11 & 72,96 & 0,2245 & 0 \\
+\hline
+  80a&   &   &   & 1,3621 & 100 & 15,11 & 72,96 & 0,2245 & 0 \\
+\hline
+81 & Wasser & 1367,031 & 75,882 & 1,3683 & 1 & 15 & 63,08 & 0,2245 & 0 \\
+\hline
+  81a&   &   &   & 1,3683 & 1 & 15 & 63,08 & 0,2245 & 0 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+90 & Wasser & 6151,161 & 341,44 & 6,1685 & 3,232 & 24,81 & 104,33 & 0,3645 & 0 \\
+\hline
+ 90a &   &   &   & 6,1685 & 3,232 & 24,81 & 104,33 & 0,3645 & 0 \\
+\hline
+91 & Wasser & 6151,161 & 341,44 & 6,1567 & 1 & 15 & 63,08 & 0,2245 & 0 \\
+\hline
+ 91a &   &   &   & 6,1567 & 1 & 15 & 63,08 & 0,2245 & 0 \\
+\hline
+92 & Wasser & 6151,161 & 341,44 & 6,1561 & 3,232 & 15,02 & 63,38 & 0,2247 & 0 \\
+\hline
+  92a&   &   &   & 6,1561 & 3,232 & 15,02 & 63,38 & 0,2247 & 0 \\
+\hline
+  &   &   &   &   &   &   &   &   &   \\
+\hline
+101 & Wasser & 8,3082 & 0,46118 & 251,58 & 0,042 & 29,81 & 2339,76 & 7,7448 & 91,13 \\
+\hline
+ 101a &   &   &   & 251,58 & 0,042 & 29,81 & 2339,76 & 7,7448 & 91,13 \\
+\hline
+102 & Wasser & 8,3082 & 0,46118 & 3,9608 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+ 102a &   &   &   & 3,9608 & 5,3 & 282,44 & 3027,48 & 7,3691 & 100 \\
+\hline
+%\end{tabular}  
+\end{longtable}
+	\label{tab.lojewski}
+
+\clearpage
+\thispagestyle{empty}
+%\begin{table}[htb]
+%	\centering
+%		\caption{Thermodynamische Daten der Stoffströme des Wasserkreislaufes (b)}
+%		\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+%			\hline
+%			&  &  $\dot{\textbf{\textit{m}}}_{}$& $\textbf{T}$ & $\textbf{\textit{p}}$  & ${\textbf{\textit{h}}}_{}$ & $\textbf{\textit{s}}$ & ${\textbf{\textit{e}}}_{} $ \footnotemark[1] & $\dot{\textbf{\textit{E}}}$ \footnotemark[1] \\
+%			\textbf{Medium} & \textbf{Strom} & \textbf{[kg/s]} & \textbf{[°C]} & \textbf{[bar]} & \textbf{[kJ/kg]} & \textbf{[kJ/(kgK)]} & \textbf{[MJ/kg]} & \textbf{[MW]} \\
+%			\hline
+%Kühlwasser & KWa & $2236,1$ & $15,00$ & $1,01$ & $63,08$ & $0,2245$ & $0,000$ & $0,000$\\
+%			\hline
+%			Kühlwasser & KWb & $2236,1$ & $15,02$ & $4,00$ & $63,43$ & $0,2246$ & $0,0003$ & $0,668$\\
+%			\hline
+%			Kühlwasser & KWc & $2236,1$ & $27,88$ & $3,95$ & $117,22$ & $0,4073$ & $0,001$ & $3,270$\\
+%			\hline
+%		\end{tabular}
+%	\label{tab.WDKb}
+%\end{table}
+%  \footnotetext[1]{stellt die physikalische Exergie dar}
+
+
+%\begin{table}[htb]
+%	\centering
+%	     \caption{Leistungen im Kaliumkreislauf}
+%		\begin{tabular}{|l|c|c|}
+%			\hline
+%			\textbf{Bauteil} & $\dot{\textbf{\textit{W}}}^{\n{\textbf{mech}}}$ & $\dot{\textbf{\textit{W}}}^{\n{\textbf{el}}}$\\
+%			\hline
+%			 & \textbf{[MW]} & \textbf{[MW]}\\
+%			\hline
+%			{{HDT}} & $28,938$& 28,504\\
+%			\hline
+%			{{NDT}} &$15,302$& 15,072\\
+%			\hline
+%			{{Pumpe}} &-& $0,111$\\
+%			\hline
+%		\end{tabular}
+%	\label{tab.Kaliumleistungen}
+%\end{table}
+
+
+
+%\begin{table}[htb]
+%	\centering
+%		  \caption{Leistungen im Wasserkreislauf}
+%		\begin{tabular}{|l|c|c|}
+%			\hline
+%			\textbf{Bauteil} & $\dot{\textbf{\textit{W}}}^{\n{\textbf{mech}}}$ & $\dot{\textbf{\textit{W}}}^{\n{\textbf{el}}}$\\
+%			\hline
+%			 & \textbf{[MW]} & \textbf{[MW]}\\
+%			\hline
+%			HDT & $23,547$ & $-$\\
+%			\hline
+%			MDT I & $15,023$ & $-$\\
+%			\hline
+%			MDT II & $26,653$ & $-$\\
+%			\hline
+%			NDT I & $15,403$ & $-$\\
+%			\hline
+%			NDT II & $9,675$ & $-$\\
+%			\hline
+%			NDT III & $10,221$ & $-$\\
+%			\hline
+%			NDT IV & $12,674$ & $-$\\
+%			\hline
+%			Pumpe I & $-$ & $3,355$\\
+%			\hline
+%			Pumpe II & $-$ & $0,002$\\
+%			\hline
+%			Pumpe III & $-$ & $0,003$\\
+%			\hline
+%			Pumpe IV & $-$ & $0,003$\\
+%			\hline
+%			Pumpe V & $-$ & $0,051$\\
+%			\hline
+%			Pumpe VI & $-$ & $0,821$\\
+%			\hline
+%			$\Sigma$ Pumpen & $-$ & $4,235$\\
+%			\hline
+%			Generator & $-$ & $111,497$\\
+%			\hline
+%		\end{tabular}
+%	\label{tab.Wasserleistungen}
+%\end{table}
+
+\end{document}

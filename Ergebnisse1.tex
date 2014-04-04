@@ -1,0 +1,566 @@
+\chapter{Ergebnisse}
+
+\section{Exergieanalyse}
+In diesem Abschnitt werden die Ergebnisse der Simulation ausgewertet und eine Exergieanalyse durchgeführt. Für die einzelnen Komponenten wird jeweils eine beispielhafte Berechnung durchgeführt. 
+Angefangen wird mit der Berechnung der Exergie des Stroms 1 in der Simulation von Lojewski. 
+\begin{align} \begin{split}
+\dot{E}_{\n{1}} \ &= \dot{m}_{\n{1}}(h_\n{1}-h_\n{0})- T_0(s_\n{1}-s_\n{0}) 
+\\ &= \SI{200}{kg/s} (2769,5\, \si{kJ/kg} - 173,38\, \si{kJ/kg})
+\\&\hspace{.1\columnwidth}- 288,15\, \si{K} (4,5247\, \si{kJ/kg.K} - 1,6034\,    \si{kJ/kg.K}) 
+\\ \dot{E}_{\n{1}} \ &= 1,754.35 \,\si{kJ/kg} \end{split}
+ \label{ex.tstrom}
+\end{align}
+
+In den folgenden Abschnitten soll für jede in der Simulation auftretenden Komponenten eine exemplarische Exergieanalyse durchgeführt werden. 
+%jeweils für eine Komponente aus Simulationen eine exemplarische Exergieanalyse durchgeführt werden. 
+Hierfür werden die Gleichungen verwendet, welche im Abschnitt \ref{Grundlagen} erläutert wurden. Im Anschluss wird eine tabellarische Übersicht aller Komponenten für jeden Prozess zusammengestellt. 
+Im allgemeinen werden Komponenten des Prozesses von Lojewski zur exemplarischen Berechnung herangezogen. 
+
+\subsection{Pumpe}
+Hier soll die Kühlwasserpumpe des Wasserkeislaufs mit der Nummer 41 berechnet werden. Für den Nutzen der Pumpe ergibt sich:
+\begin{align}
+\dot{E}_{\n{P,41}} \ &= \dot{E}_{\n{92}}-\dot{E}_{\n{91}} \ = 1,49\, \si{MW} - 0\,\si{MW} \ = 1,49\,\si{MW}                                                                                                       
+\end{align}
+und der Aufwand beschreibt sich durch:
+\begin{align}
+\dot{E}_{\n{F,41}} \ &= \dot{W}_{\n{el}}= 1,85\,\si{MW}
+\end{align}
+Das $\dot{E}_{D}$ ergibt sich aus der Gleichung (\ref{ed.pump}):
+\begin{align} 
+\dot{E}_{\n{D,41}} \ &= \dot{E}_{\n{91}}- \dot{E}_{\n{92}}+ \dot{W}_{\n{el}}= 0\,\si{MW} - 1,49\,\si{MW} + 1,85\,\si{MW} = 0,35\,\si{MW}
+\end{align}
+%geht ja gar nicht... siehe ausblick??
+Nachdem die Exergievernichtung berechnet wurde, kann auch der Exergievernichtungskoeffizient $y^*_{\n{D}}$ berechnet werden. 
+\begin{align}
+y^*_{\n{D}} \ &= \frac{\dot{E}_{\n{D,k}}}{\sum\limits_{\n{k}}\dot{E}_{\n{D,k}}}  \label{y}
+% \frac{\sum\limits_{\n{j}}\dot{Q}_{\n{j}}}{\n{LHV}}
+\end{align}
+Da bis jetzt noch nicht alle Exergievernichtungen berechnet wurden, wird hier vorgegriffen und der Wert für $\sum\limits_{\n{k}}\dot{E}_{\n{D,k}}$ genutzt. Im Anhang befinden sich alle notwendigen Werte um die Berechnung der Summe aller Exergievernichtungsterme zu bilden.
+Damit ergibt sich bei dieser Pumpe:
+\begin{align} 
+y^*_{\n{D,41}} \ &= \left(\frac{0,35\,\si{MW}}{154,53\,\si{MW}}\right) \cdot 100 = 0,23\,\% 
+%\left(\frac{4,48\,MW}{154,48\,MW}\right)100
+\end{align}
+
+Die Gleichung (\label{gl.ex.eps.pump}) dient zur Bestimmung des exergetischen Wirkungsgrades der Pumpe 
+\begin{align} 
+\varepsilon_{\n{41}} \ &= \ \frac{\dot{E}_{\n{92}}-\dot{E}_{\n{91}}}{\dot{W}_{\n{el}}}= \frac{1,49\,\si{MW}-0\,\si{MW}}{1,85\,\si{MW}}= 0,81 
+\label{gl.ex.eps.pump}
+\end{align}
+
+%in ... bezug auf diese ungenauigkeiten nehmen!!!
+\subsection{Turbine}
+Der Aufwand einer Turbine beschreibt sich durch die Gleichung (\ref{ef.turb}). Hier soll die Hochdruckturbine 13 im Wasserkreislauf betrachtet werden. 
+\begin{align} 
+\dot{E}_{\n{F,13}} \ &= \dot{E}_{\n{31a}}- \dot{E}_{\n{33}}- \dot{E}_{\n{32}} = 293,25\,\si{MW} - 22,93\,\si{MW} - 188,45\,\si{MW} = 81,87\,\si{MW}
+\end{align}
+
+%\begin{align}
+%\dot{W}_{mech) \ &= \ -76,618\,MW
+%\end{align}
+
+$\dot{W}_{mech}$ beschreibt den Nutzen der Komponente 13 in dem Prozess von Lojewski. 
+Nach Betrachtung der Systemgrenze kann $\dot{E}_{D}$ folgendermaßen bestimmt werden:
+
+\begin{align} \begin{split}
+    \dot{E}_{\n{D,13}} \ &= \ \dot{E}_{\n{31a}} - \dot{E}_{\n{33}} - \dot{E}_{\n{32}}- \dot{W}_{\n{mech}}= 293,25\,\si{MW} - 22,93\,\si{MW} - 188,45\,\si{MW} + 76,618\,\si{MW}
+     \\ \dot{E}_{\n{D,13}} \ &= \ 4,48\,\si{MW} \end{split}
+\end{align}
+
+Für den exergetischen Wirkungsgrad $\varepsilon_{\n{13}}$ ergibt sich demnach:
+\begin{align}
+\varepsilon_{\n{13}} \ &= \ \frac{\dot{W}_{mech}}{\dot{E}_{\n{31a}} - \dot{E}_{\n{33}} - \dot{E}_{\n{32}}} = \ \frac{76,618\,\si{MW}}{293,25\,\si{MW} - 22,93\,\si{MW} - 188,45\,\si{MW} } = 0,945 \label{gl.ex.eps.tturb}
+\end{align}
+
+Der Exergievernichtungskoeffizient für die Turbine ergibt sich nach (\ref{y}) Gleichung zu:
+\begin{align}
+y^*_{\n{D,13}} \ &= \left(\frac{4,48\,\si{MW}}{154,48\,\si{MW}}\right) \cdot 100 = 2,90\,\% 
+\end{align}
+%\begin{align} 
+%y_{\n{D,13}} \ &= \left(\frac{4,48\,MW}{6682,13\,MW}\right)100= 0,067\,\% 
+%\end{align}
+
+
+\subsection{Dampferzeuger/Überhitzer/Zwischenüberhitzer}
+In diesem Abschnitt soll sowohl ein Kaliumdampferzeuger als auch ein Zwischenüberhitzer exergetisch betrachtet werden. 
+Angefangen mit dem Kaliumdampferzeuger Nummer 1 in dem Prozess nach Lojewski, wird $\dot{E}_{\n{q}}$ folgendermaßen berechnet:
+\begin{align}
+    \dot{E}_{\n{q,1}} \ &= 1- \left(\frac{T_{\n{0}}}{T_{\n{m}}}\right)\dot{Q} = \left(1- \frac{288,15\,\si{K}}{1564,46\,\si{K}}\right) 453,135\,\si{MW} = 369,67\,\si{MW} 
+\end{align}
+
+Der zugeführte Wärmestrom $\dot{Q}$ ist direkt aus der Simulation abzulesen. Die Berechnung der thermodynamischen Mitteltemperatur ist in folgender Gleichung dargestellt.
+\begin{align}
+    {T_{\n{m}}} \ &=\ \frac{h_{\n{aus}}-h_{\n{ein}}}{s_{\n{aus}}-s_{\n{ein}}} = \frac{(-1752,58 + 524,79)\,\si{kJ/kg}}{(8,1995-8,9843)\,\si{kJ/kg.K}} = 1564,46\,\si{K}
+\end{align}
+%evtl. °C mit angeben
+$\dot{E}_{\n{D}}$ lässt sich folgendermaßen ermitteln:
+\begin{align}
+\dot{E}_{\n{D,1}} \ &= \ \dot{E}_{\n{q,1}} + \dot{E}_{\n{29}} - \dot{E}_{\n{1}} = 369.97\,\si{MW} + 34,98\,\si{MW} - 352,02\,\si{MW} = 52,63\,\si{MW} 
+\end{align}
+Der Aufwand stellt den über die Systemgrenze zugeführten Wärmestrom, also $\dot{E}_{\n{q}}$ dar. 
+\begin{align}
+    \dot{E}_{\n{F,1}} \ &= \ \dot{E}_{\n{q,1}} = 369,97\,\si{MW}  
+\end{align}
+% ist doch genau andersrum -> alle werte von ef sind falsch und damit alle yd
+Der Nutzen ist die dem Fluid zugeführte Wärmemenge, ablesbar aus der Simulation:
+\begin{align}
+   \dot{E}_{\n{P,1}} \ &= \ \dot{Q}_{\n{zu}}= 453,135\,\si{MW}  
+\end{align}
+Mit diesen Werten ergibt sich dann ein exergetischer Wirkungsgrad von:
+\begin{align}
+\varepsilon_{\n{1}} \ &= \ 1-\left(\frac{\dot{E}_{D,1}}{\dot{E}_{\n{F,1}}}\right)= \ 1-\left(\frac{52,63\,\si{MW}}{369,97\,\si{MW} }\right)= 0,858 \label{gl.ex.eps.tturb}
+\end{align}
+Der Exergievernichtungskoeffizient berechnet sich wie folgt:
+\begin{align}
+y^*_{\n{D,1}} \ &= \left(\frac{52,63\,\si{MW}}{154,48\,\si{MW}}\right) \cdot 100= 34,07\,\% 
+\end{align}
+
+Für die Zwischenüberhitzer ergibt sich eine analoge Berechnung. 
+%genauso funktioniert wie ein Dampferzeuger sollen im Folgenden nur die Gleichungen dargestellt werden, die zur Berechnung notwendig sind.
+%Es wird exemplarisch der Zwischenüberhitzer Nummer 3 betrachtet.
+%\begin{align}
+%    \dot{E}_{\n{q,3}} &= 56,48\,MW 
+%\end{align}
+
+%\begin{align}
+%\dot{E}_{\n{D,3}} \ &= 56,48\,MW + 248,81\,MW - 293,25\,MW = 12,04\,MW 
+%\end{align}
+
+%\begin{align} 
+%    \dot{E}_{\n{F,3}} \ &= \ \dot{E}_{\n{q,3}} = 56,48\,MW 
+%\end{align}
+% ist doch genau andersrum -> alle werte von ef sind falsch und damit alle yd
+%\begin{align}
+%    \dot{E}_{\n{P,3}} \ &= \ \dot{Q}_{\n{zu}} = 77,67\,MW 
+%\end{align}
+
+%\begin{align}
+%\varepsilon_{\n{3}} \ &= \ 1-\left(\frac{\dot{E}_{D,3}}{\dot{E}_{\n{F,3}}}\right) = \ 1-\left(\frac{12,04\,MW}{56,48\,MW }\right) = 0,787 \label{gl.ex.eps.tturb}
+%\end{align}
+%\begin{align}
+%y^*_{\n{D}} \ &= \left(\frac{12,04\,MW}{154,48\,MW}\right)100 = 7,79\,\% 
+%\end{align}
+%\begin{align} \begin{split}
+%y_{\n{D}} \ &= \left(\frac{12,04\,MW}{6682,13\,MW}\right)100 \\ y^*_{\n{D}} \ &= 0,1799\,\% \end{split}
+%\end{align}
+
+
+\subsection{Wärmeübertrager}
+Da es sich bei dem Kaliumkondensator 20 zwar um einen Kondensator handelt, bei dem das Kalium kondensiert wird, aber auch eine Wärmeübertragung stattfindet, soll hier dieser als Muster für alle weiteren Wärmeübertrager gewählt werden. Es handelt sich bei dem Kaliumkondensator nicht um eine dissipative Komponente, da sowohl ein Nutzen als auch ein Aufwand definiert werden kann. 
+
+Der Nutzen lässt sich als die Differenz der beiden Wasserexergieströme bezeichnen, da der kältere Wasserstrom erhitzt werden soll.
+\begin{align}
+\dot{E}_{\n{P,20}} \ &= \dot{E}_{30}- \dot{E}_{67} = \ 248,81\,\si{MW} - 70,90\,\si{MW} = 177,91\,\si{MW}
+\end{align}
+Der Aufwand ist die Differenz der warmen Ströme, demnach der beiden Kaliumströme.
+\begin{align}
+\dot{E}_{\n{F,20}} \ &= \dot{E}_{27} - \dot{E}_{28} = 241,95\,\si{MW} - 34,98\,\si{MW} = 206,97\,\si{MW}
+\end{align}
+Unter Zuhilfenahme einer Bilanzierung um den Wärmeübertrager, in Abbildung \ref{pic.Wärme} dargestellt, folgt für die Exergievernichtung:
+\begin{align}
+\dot{E}_{\n{D,20}} \ &= \dot{E}_{27}+ \dot{E}_{67}-\dot{E}_{28}- \dot{E}_{30}= 241,95\,\si{MW} + 70.90\,\si{MW} - 34,98\,\si{MW} - 248,81\,\si{MW} = 29,06\,\si{MW}
+\end{align}
+und damit ergibt sich der exergetische Wirkungsgrad zu:
+\begin{align}
+\varepsilon_{\n{20}} \ &= \ \frac{\dot{E}_{30}- \dot{E}_{67}}{\dot{E}_{27}- \dot{E}_{28}} = \frac{117,91\,\si{MW}}{206,97\,\si{MW}} = 0,860 
+%&= 1-(29,06/206,97) = 1-(ed/ef)\label{gl.ex.eps.twärme}
+%aber das funktioniert ja gar nicht :(
+\end{align}
+\begin{align} 
+y^*_{\n{D,20}} \ &= \left(\frac{29,06\,\si{MW}}{154,48\,\si{MW}}\right) \cdot 100 = 18,81\,\% 
+\end{align}
+%\begin{align} \begin{split}
+%y_{\n{D}} \ &= \left(\frac{29,06\,MW}{6682,13\,MW}\right)100 \\ y^*_{\n{D}} \ &= 0,4346\,\% \end{split}
+%\end{align}
+
+
+
+\subsection{Mischer/Speisewasserbehälter}
+Hier wird der Speisewasserbehälter 70 in Lojewski betrachtet.
+
+Legt man um den Speisewasserbehälter eine Bilanzgrenze und wendet die Gleichung (\ref{eq.exbilanz}) an, erhält man für die Exergievernichtung $\dot{E}_{D}$ folgende Gleichung:
+
+\begin{align}
+     \dot{E}_{\n{D,70}} \ &= \ \dot{E}_{\n{39a}} + \dot{E}_{\n{56}} + \dot{E}_{\n{70a}}- \dot{E}_{\n{63}} = 5,48\,\si{MW} + 9,16\,\si{MW} + 5,61\,\si{MW} - 19,70\,\si{MW} = 0,56\,\si{MW} 
+\end{align}
+Da $\dot{E}_{56}$ der kalte Strom und die beiden anderen die warmen Ströme sind, ergibt sich der Nutzen zu:
+
+\begin{align}
+     \dot{E}_{\n{P,70}} \ &= \ \dot{m}_{\n{56}} \cdot (e_{\n{63}}-e_{\n{56}}) = 135,07\,\si{kg/s} \cdot (104,70\,\si{kJ/kg} - 67,83\,\si{kJ/kg}) = 4979,39\,\si{MW}
+\end{align}
+und der Aufwand zu:
+
+\begin{align}\begin{split}
+     \dot{E}_{\n{F,70}} \ &= \ \dot{m}_{\n{70a}}\left(e_{\n{70a}}-e_{\n{63}}\right)+ \dot{m}_{\n{39a}}\cdot \left(e_{\n{39a}}-e_{\n{63}}\right)
+     \\ &= 46,939\,\si{kg/s} \cdot \left(119,54\,\si{kJ/kg} - 104,70\,\si{kJ/kg}\right)
+     \\&\hspace{.1\columnwidth}+6,1158\,\si{kg/s} \cdot \left(895,66\,\si{kJ/kg} - 104,70\,\si{kJ/kg}\right) 
+     \\ &= 5533,95\,\si{MW} 
+     \end{split}
+\end{align}
+
+Damit gilt für den exergetischen Wirkungsgrad nach Gleichung (\ref{gl.ex.eps}):
+\begin{align}
+\varepsilon_{\n{70}} \ &= \ \frac{ \dot{E}_{\n{P}}}{ \dot{E}_{\n{F}}} = 0,90 \label{gl.ex.eps.tspeise}
+\end{align}
+
+\begin{align} \begin{split}
+y^*_{\n{D,70}} \ &= \left(\frac{0,56\,\si{MW}}{154,53\,\si{MW}}\right) \cdot 100 = 0,36\,\% \end{split}
+\end{align}
+%\begin{align} \begin{split}
+%y_{\n{D}} \ &= \left(\frac{0,55\,MW}{6682,13\,MW}\right)100 \\ y^*_{\n{D}} \ &= 0,0083\,\% \end{split}
+%\end{align}
+
+\subsection{Generator}
+Um die Exergievernichtung $\dot{E}_{\n{D}}$ zu berechnen, wird folgende Gleichung genutzt.
+\begin{align}
+     \dot{E}_{\n{D}} \ &= \ \dot{W}_{\n{mech}}-\dot{W}_{\n{el}} = -234,10\,\si{MW} + 229,42\,\si{MW} = 4,68\,\si{MW}
+\end{align}
+und damit ergibt sich nach Gleichung (\ref{gl.ex.eps}) für $\varepsilon$
+
+\begin{align}
+\varepsilon \ &= \ \frac{\dot{W}_{\n{el}}}{\dot{W}_{\n{mech}}} = 0,98\,\%
+\end{align}
+
+\subsection{Drossel/dissipative Komponenten}
+Es soll hier die Drosselung im Strom 69 --> 69a dargestellt werden.
+
+\begin{align}
+  \dot{E}_{\n{D,69}} \ &= \ \dot{E}_{\n{69}}- \dot{E}_{\n{69a}} = 6,88\,\si{MW} - 6,82\,\si{MW} = 0,07\,\si{MW}
+\end{align}
+
+\begin{align} \begin{split}
+y^*_{\n{D,69}} \ &= \left(\frac{0,07\,\si{MW}}{154,48\,\si{MW}}\right) \cdot 100 = 0,04\,\% \end{split}
+\end{align}
+%\begin{align} \begin{split}
+%y_{\n{D}} \ &= \left(\frac{0,07\,MW}{6682,13\,MW}\right)100 \\ y^*_{\n{D}} \ &= 0,001\,\% \end{split}
+%\end{align}
+
+Da es sich bei dem Kondensator 80 im Wasserdampfkreislauf um eine dissipative Komponente des Systems handelt, wird diese folgendermaßen erfasst:
+
+\begin{align}
+     \dot{E}_{\n{D,80}} \ &= \ \dot{E}_{\n{48}} + \dot{E}_{\n{92}} - \dot{E}_{\n{90}}- \dot{E}_{\n{49}} = 12,48\,\si{MW} + 1,49\,\si{MW} - 5,59\,\si{MW} - 0,17\,\si{MW} 
+    = 8,21\,\si{MW}  
+\end{align}
+\begin{align} \begin{split}
+y^*_{\n{D,80}} \ &= \left (\frac{8,21\,\si{MW}}{154,48\,\si{MW}}\right) \cdot 100 = 5,32\,\% \end{split}
+\end{align}
+%\begin{align} \begin{split}
+%y_{\n{D}} \ &= \left (\frac{8,21\,MW}{6682,13\,MW} \right ) 100 \\ y^*_{\n{D}} \ &= 0,122\,\% \end{split}
+%\end{align}
+\begin{table}[htbp]
+\caption{Ergebnisse der Exergieanalyse des Prozess von Lojewski}
+\centering
+\scriptsize
+\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+\hline
+{\bf Komponente} & {\bf $\dot{E}_{\n{q}}$}  & {\bf $\dot{W}_{\n{mech}}$}  &  {\bf $\dot{E}_{\n{ein}}$ } &  {\bf  $\dot{E}_{\n{aus}}$ } &  {\bf  $\dot{E}_{\n{D}}$ }  &  {\bf  $\dot{E}_{\n{F}}$ }  & {\bf  $\varepsilon$  }  & {\bf  $y^*_{\n{D}}$ }  \\
+&  {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]}& {\tiny[MW]}&  {\tiny[-]} &  {\tiny[-]}\\
+\hline
+
+
+
+%\multicolumn{1}{|c|}{\textbf{Komponente}} & \multicolumn{1}{c|}{\textbf{$\dot{E}_{\n{q}}$ }} & \multicolumn{1}{c|}{\textbf{$\dot{W}_{\n{mech}}$ }} & \multicolumn{1}{c|}{\textbf{$\dot{E}_{\n{ein}}$ }} & \multicolumn{1}{c|}{\textbf{$\dot{E}_{\n{aus}}$ }} & \multicolumn{1}{c|}{\textbf{$\dot{E}_{\n{D}}$ }} & \multicolumn{1}{c|}{\textbf{$\dot{E}_{\n\{F}}$ }} & \multicolumn{1}{c|}{\textbf{$\varepsilon$  }} & \multicolumn{1}{c|}{\textbf{$y^*_{\n{D}}$ }} \\ 
+%\hline
+%\multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{c|}{\textbf{[MW]}} & \multicolumn{1}{c|}{\textbf{[MW]}} & \multicolumn{1}{c|}{\textbf{[MW]}} & \multicolumn{1}{c|}{\textbf{[MW]}} & \multicolumn{1}{c|}{\textbf{[MW]}} & \multicolumn{1}{c|}{\textbf{[MW]}} & \multicolumn{1}{c|}{\textbf{[-]}} & \multicolumn{1}{c|}{\textbf{[-]}} \\ \hline
+Kaliumdampferzeuger (1) & 369,67 &  & 34,98 & 352,03 & 52,63 & 369,67 & 0,86 & 34,06 \\ 
+\hline
+Summe Turbinen (10,11,12) &  & -104,27 &  &  & 4,63 & 109,95 & 0,96 & 3,00 \\ \hline
+Summe Abscheider (60,61) &  &  &  &  & 0,00 &  & 1,00 & 0,00 \\ \hline
+Mischer(50) &  &  & 241,95 & 241,95 & 0,00 & 28727,01 & 1,00 & 0,00 \\ \hline
+Pumpe(40) &  & 0,00 & 34,98 & 34,98 & 0,00 & 0,00 & 1,00 & 0,00 \\ \hline
+Summe Drossel (8,9,29) &  &  &  &  & 0,13 &  & diss. & 0,08 \\ \hline
+Kaliumkondensator (20) &  &  & 312,85 & 283,78 & 29,07 & 206,97 & 0,86 & 18,81 \\ \hline
+ &  &  &  &  &  &  &  &  \\ \hline
+Summe Generator &  & 338,32 &  &  & 6,77 &  & 0,98 & 4,38 \\ \hline
+Summe Turbinen (13,14,15) &  & -234,06 &  &  & 19,20 & 255,62 & 0,93 & 12,43 \\ \hline
+Summe Zwischenüberhitzer (3,4) & 123,55 &  &  &  & 26,51 & 123,55 & 0,79 & 17,15 \\ \hline
+Summe Mischer (51,52,53,56,57) &  &  &  &  & 0,01 & 25,02 & 1,02 & 0,01 \\ \hline
+Speisewasserbehälter (70) &  &  & 20,25 & 19,70 & 0,56 & 5533,95 & 0,90 & 0,36 \\ \hline
+Summe WÜ(30,31,32,33,34,35,36,37) &  &  &  &  & 4,74 & 59,70 & 0,86 & 3,07 \\ \hline
+Summe Pumpen (41,42,43) &  & 15,49 &  &  & 0,39 & 15,48 & 0,82 & 0,25 \\ \hline
+Kondensator (80) &  &  & 13,97 & 5,76 & 8,21 &  & diss. & 5,31 \\ \hline
+Summe Drossel (30,31,36,39,57,58,60,68,69,70) &  &  &  &  & 0,22 &  & diss. & 0,14 \\ \hline
+\end{tabular}
+\label{Lojewski}
+\end{table}
+
+
+
+%\begin{table}
+%\caption{Ergebnisse der Exergieanalyse von Lojewski}
+%\centering
+%\scriptsize
+%\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+%\hline
+%{\bf Komponente} &  {\bf  $\dot{Q}_{\n{j}}$ } &  {\bf  $\dot{T}_{\n{j}}$ } &  {\bf  $\dot{E}_{\n{q}}$ }  & {\bf  $\dot{W}_{\n{mech}}$ }  &  {\bf  $\dot{E}_{\n{ein}}$ } &  {\bf  $\dot{E}_{\n{aus}}$ } &  {\bf  $\dot{E}_{\n{D}}$ }  &  {\bf  $\dot{E}_{\n{F}}$ }  & {\bf  $\varepsilon$  }  & {\bf  $y^*_{\n{D}}$ }  \\
+%& {\tiny[kW]} & {\tiny[°C]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]}& {\tiny[MW]}&  {\tiny[-]} &  {\tiny[-]}\\
+%\hline
+%Kaliumdampferzeuger (1) & 453135,33 & 1291,31 & 369,67 &  & 34,98 & 352,02 & 52,63 & 369,67 & 0,86 & 35,63 \\
+%\hline
+%Summe Turbinen &  &  &  & -104,27 & 933,41 & 823,45 & 4,63 & 109,95 & 0,96 & 3,14 %\\
+%\hline
+%Summe Abscheider &  &  &  & 0,00 & 589,12 & 589,12 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%Mischer(50) &  &  &  &  & 241,94 & 241,95 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%Pumpe(40) &  &  &  & 0,00 & 34,98 & 34,98 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%SUMME Drossel &  &  &  &  &  &  & 0,13 &  & diss. & 0,09 \\
+%\hline
+%Kaliumkondensator (20) &  &  &  &  & 312,85 & 283,78 & 29,06 & 206,97 & 0,86 & 19,68 \\
+%\hline
+% &  &  &  &  &  &  &  &  &  &  \\
+%\hline
+%Summe Turbinen &  &  &  & -234,10 & 627,80 & 372,16 & 19,17 & 255,64 & 0,93 & 12,98 \\
+%\hline
+%Reheater(3) & 77666,84 & 783,10 & 56,48 &  & 248,81 & 293,25 & 12,04 & 56,48 & 0,79 & 8,15 \\
+%\hline
+%Reheater(4) & 100133,91 & 599,52 & 67,07 &  & 167,14 & 219,74 & 14,47 & 67,07 & 0,78 & 9,80 \\
+%\hline
+%Summe Mischer &  &  &  & 0,00 & 451,80 & 451,80 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%Speisewasserbehälter(70) &  &  &  &  & 20,25 & 19,70 & 0,55 & 5533,95 & 0,90 & 0,38 \\
+%\hline
+%Summe Wärmübertrager &  &  &  & 0,00 & 203,79 & 199,04 & 4,74 & 59,70 & 0,86 & 3,21 \\
+%\hline
+%Summe Pumpen &  &  &  & 15,49 & 0,27 & 15,37 & 0,39 & 15,48 & 0,82 & 0,26 \\
+%\hline
+%Kondensator (80) &  &  &  &  & 13,97 & 5,76 & 8,21 &  & diss. & 5,56 \\
+%\hline
+%SUMME Drossel &  &  &  &  &  &  & 0,22 &  & diss. & 0,15 \\
+%\hline
+%\end{tabular}  
+
+
+%\end{table}
+
+
+\begin{table}
+\caption{Ergebnisse der Exergieanalyse von Collier}
+\centering
+\scriptsize
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+\hline
+{\bf Komponente}&{\bf  $\dot{Q}_{\n{j}}$ }&{\bf  $\dot{T}_{\n{j}}$ }&{\bf  $\dot{E}_{\n{q}}$ }&{\bf  $\dot{W}_{\n{mech}}$ }&{\bf  $\dot{E}_{\n{ein}}$ }&  {\bf  $\dot{E}_{\n{aus}}$ }&  {\bf  $\dot{E}_{\n{D}}$ }&{\bf  $\dot{E}_{\n{F}}$ }& {\bf  $\varepsilon$  }& {\bf  $y^*_{\n{D}}$ }\\
+& {\tiny[kW]} & {\tiny[°C]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]}& {\tiny[MW]}&  {\tiny[-]} &  {\tiny[-]}\\ \hline
+Kaliumdampferzeuger  & 542388,43 & 1224,80 & 438,05 &  & 41,31 & 417,11 & 62,25 & 438,05 & 0,86 & 32,15 \\ \hline
+Kaliumkondensator  &  &  &  &  & 324,19 & 306,07 & 18,11 & 165,73 & 0,89 & 9,35 \\ \hline
+Summe Turbine &  &  &  & -90,06 & 548,82 & 453,59 & 4,26 & 95,23 & 0,96 & 2,20 \\ \hline
+Ventil  &  &  &  &  & 382,31 & 381,96 & 0,35 & 9906,55 & 0,97 & 0,18 \\ \hline
+Summe Mischer &  &  &  &  & 351,66 & 351,67 & 0,00 & 0,00 & 1,00 & 0,00 \\ \hline
+%Generator &  &  &  & -90,06 &  &  & 1,80 & 0,00 & 0,98 & 0,93 \\ \hline
+Generator &  &  &  & -338,39 &  &  & 6,77 & 0,00 & 0,98 & 3,50 \\ \hline
+Pumpe &  &  &  &  & 41,31 & 41,31 & 0,00 & 0,00 & \#DIV/0! & 0,00 \\ \hline
+Summe Drossel &  &  &  &  & 0,00 & 0,00 & 11,18 & 0,00 & diss. & 5,77 \\ \hline
+\hline
+Wasserdampferzeuger  & 121669,72 & 622,69 & 82,53 &  & 71,10 & 133,00 & 20,63 & 82,53 & 0,75 & 10,65 \\ \hline
+Summe Turbine &  &  &  & -248,33 & 642,41 & 369,20 & 22,37 & 273,21 & 0,93 & 11,55 \\ \hline
+Summe Zwischenüberhitzer &  &  &  &  & 732,50 & 697,07 & 35,43 & 269,05 & 0,85 & 18,30 \\ \hline
+Summe Mischer &  &  &  &  & 519,82 & 519,81 & 0,01 & 29,88 & 0,91 & 0,00 \\ \hline
+Speisewasserbehälter &  &  &  &  & 20,87 & 19,75 & 1,12 & 6092,45 & 0,82 & 0,58 \\ \hline
+Summe Wärmeübertrager &  &  &  &  & 205,60 & 200,11 & 5,49 & 60,57 & 0,83 & 2,83 \\ \hline
+Summe Pumpe &  &  &  & 2,17 & 0,26 & 1,98 & 0,44 & 2,16 & 0,76 & 0,23 \\ \hline
+Kondensator  &  &  &  &  & 15,80 & 12,25 & 3,55 & 0,00 & diss. & 1,84 \\ \hline
+Summe Drossel &  &  &  &  & 0,00 & 0,00 & 0,22 & 0,00 & diss. & 0,23 \\ \hline
+
+%\hline
+%Kaliumdampferzeuger (1) & 542388,43 & 1224,80 & 438,05 &  & 41,31 & 417,11 & 62,25 & 438,05 & 0,86 & 33,38 \\
+%\hline
+%Summe Turbinen &  &  &  & -90,06 & 548,82 & 453,59 & 4,26 & 95,23 & 1,91 & 2,28 \\
+%\hline
+%Ventil (80) &  &  & 0,00 &  & 382,31 & 381,96 & 0,00 & 0,35 & 1,00 & 0,00 \\
+%\hline
+%Summe Mischer &  &  &  &  & 733,97 & 733,62 & 0,00 & 0,35 & 3,00 & 0,00 \\
+%\hline
+%Pumpe(40) &  &  &  & 0,00 & 41,31 & 41,31 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%Summe Drosseln &  &  &  &  &  &  & 11,18 &  & diss. & 5,99 \\
+%\hline
+% &  &  &  &  &  &  &  &  &  &  \\
+%\hline
+%Kaliumkondensator (20) &  &  &  &  & 324,19 & 306,07 & 18,11 & 165,73 & 0,89 & 9,71 \\
+%\hline
+%Summe Turbinen &  &  &  & -248,33 & 642,41 & 369,20 & 22,37 & 273,21 & 0,93 & 11,99 \\
+%\hline
+%Summe Reheater &  &  &  &  & 732,50 & 697,07 & 35,43 & 269,05 & 0,85 & 19,00 \\
+%\hline
+%SSumme Mischer &  &  &  &  & 519,82 & 519,81 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%Speisewasserbehälter(70) &  &  &  &  & 20,87 & 19,75 & 1,12 & 6092,45 & 0,82 & 0,60 \\
+%\hline
+%Summe Wärmeübertrager &  &  &  &  & 205,60 & 200,11 & 5,49 & 60,57 & 0,83 & 2,94 \\
+%\hline
+%Summe Pumpen &  &  &  & 15,43 & 0,26 & 15,25 & 0,44 & 15,42 & 0,82 & 0,23 \\
+%\hline
+%Kondensator (80) &  &  &  &  & 15,80 & 12,25 & 3,55 &  & diss. & 1,91 \\
+%\hline
+%Summe Drosseln &  &  &  &  &  &  & 0,22 &  & diss. & 0,12 \\
+%\hline
+\end{tabular}  
+%\end{longtable}
+%\end{tabular}  
+
+\end{table}
+%reheater vll einzeln
+
+
+\begin{table}
+\caption{Ergebnisse der Exergieanalyse von Angelino}
+\centering
+\scriptsize
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+\hline
+{\bf Komponente} &  {\bf  $\dot{Q}_{\n{j}}$ } &  {\bf  $\dot{T}_{\n{j}}$ } &  {\bf  $\dot{E}_{\n{q}}$ }  & {\bf  $\dot{W}_{\n{mech}}$ }  &  {\bf  $\dot{E}_{\n{ein}}$ } &  {\bf  $\dot{E}_{\n{aus}}$ } &  {\bf  $\dot{E}_{\n{D}}$ }  &  {\bf  $\dot{E}_{\n{F}}$ }  & {\bf  $\varepsilon$  }  & {\bf  $y^*_{\n{D}}$ }  \\
+& {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} &  {\tiny[-]} &  {\tiny[-]} &  {\tiny[-]} \\ \hline
+Kaliumdampferzeuger  & 595660,59 & 1060,65 & 466,98 &  & 36,37 & 451,53 & 51,82 & 466,98 & 0,89 & 41,27 \\ \hline
+Kaliumkondensator  &  &  &  &  & 190,73 & 177,12 & 13,61 & 123,34 & 0,89 & 10,84 \\ \hline
+Summe Turbinen  &  &  &  & -139,56 & 1002,37 & 855,00 & 6,41 & 147,38 & 0,96 & 5,11 \\ \hline
+Summe Abscheider  &  &  &  &  & 718,52 & 718,52 & 0,00 & 0,00 & 1,00 & 0,00 \\ \hline
+Summe Mischer  &  &  &  &  & 604,17 & 604,16 & 0,01 & 30739,15 & 4,99 & 0,01 \\ \hline
+Summe Generator &  &  &  & -338,38 &  & & 6,77 & 0,00 &0,98 & 5,39 \\ \hline
+Pumpe &  &  &  &  & 36,38 & 36,38 & 0,00 & 0,00 & 1,00 & 0,00 \\ \hline
+Summe Drossel &  &  &  &  &  &  & 0,06 & 0,00 & diss. & 0,05 \\ \hline 
+\hline
+Summe Turbinen  &  &  &  & -198,82 & 507,54 & 289,12 & 17,59 & 218,41 & 0,93 & 0,00 \\ \hline
+Summe Zwischenüberhitzer &  &  &  &  & 559,07 & 539,63 & 19,43 & 145,82 & 0,86 & 0,00 \\ \hline
+Summe Mischer &  &  &  &  & 410,36 & 410,36 & 0,00 & 26,35 & 0,98 & 0,00 \\ \hline
+Speisewasserbehälter &  &  &  &  & 15,99 & 15,07 & 0,92 & 4748,83 & 0,81 & 0,73 \\ \hline
+Summe Wärmeübertrager &  &  &  &  & 156,88 & 152,41 & 4,47 & 46,56 & 0,73 & 0,00 \\ \hline
+Summe Pumpen &  &  &  & 1,68 & 0,20 & 1,54 & 0,34 & 1,68 & 0,76 & 3,56 \\ \hline
+%Summe Mischer &  &  &  &  & 410,36 & 410,36 & 0,00 & 26,35 & 0,98 & 0,00 \\ \hline
+Kondensator  &  &  &  &  & 12,42 & 9,56 & 2,86 & 0,00 & diss. & 2,28 \\ \hline
+Summe Drossel &  & \textbf{} & \textbf{} & \textbf{} &  &  & 0,16 & 0,00 & diss. & 0,13 \\ \hline
+\end{tabular}
+
+\end{table}
+
+%\begin{table}
+%\caption{Ergebnisse der Exergieanalyse von Angelino}
+%\centering
+%\scriptsize
+%\begin{tabular}{|l|r|r|c|c|c|c|c|c|c|c|}
+%\hline
+%{\bf Komponente} &  {\bf  $\dot{Q}_{\n{j}}$ } &  {\bf  $\dot{T}_{\n{j}}$ } &  {\bf  $\dot{E}_{\n{q}}$ }  & {\bf  $\dot{W}_{\n{mech}}$ }  &  {\bf  $\dot{E}_{\n{ein}}$ } &  {\bf  $\dot{E}_{\n{aus}}$ } &  {\bf  $\dot{E}_{\n{D}}$ }  &  {\bf  $\dot{E}_{\n{F}}$ }  & {\bf  $\varepsilon$  }  & {\bf  $y^*_{\n{D}}$ }  \\
+%
+%& {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} & {\tiny[MW]} &  {\tiny[-]} &  {\tiny[-]} &  {\tiny[-]} \\
+%\hline
+%Kaliumdampferzeuger (1) & 595660,59 & 1060,65 & 466,98 &  & 36,37 & 451,53 & 51,82 & 466,98 & 0,89 & 41,27 \\
+
+%Summe Turbinen &  &  &  & -139,56 & 1002,37 & 855,00 & 6,41 & 147,38 & 0,96 & 5,10580349 \\
+%\hline
+%Summe Abscheider &  &  &  &  & 718,52 & 718,52 & 0,00 & -0,01 & 1,00 & 0,00 \\
+%\hline
+%Mischer(50) &  &  &  &  & 323,81 & 323,81 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%Pumpe(40) &  &  &  & 0,00 & 36,38 & 36,38 & 0,00 & 0,00 & 1,00 & 0,00 \\
+%\hline
+%SUMME Drossel &  &  &  &  &  &  & 0,06 &  & diss. & 0,05 \\
+%\hline
+%Kaliumkondensator (20) &  &  &  &  & 190,73 & 177,12 & 13,61 & 123,34 & 0,89 & 10,84 \\
+%\hline
+%Summe Generator &  &  &  & -338,38 &  &  & 6,77 &  & 0,98 & 4,97 \\
+%\hline
+% &  &  &  &  &  &  &  &  &  &  \\
+%\hline
+%Summe Turbinen &  &  &  & -198,82 & 507,54 & 289,12 & 17,59 & 218,41 & 0,93 & 14,01 \\
+%\hline
+%Summe Reheater &  &  &  &  & 559,07 & 539,63 & 19,43 & 145,82 & 0,86 & 13,40 \\
+%\hline
+%Summe Mischer &  &  &  &  & 614,37 & 614,37 & 0,00 & 0,01 & 1,00 & 0,00 \\
+%\hline
+%Speisewasserbehälter(70) &  &  &  &  & 15,99 & 15,07 & 0,92 & 4748,83 & 0,81 & 0,64 \\
+%\hline
+%Summe Wärmeübertrager &  &  &  &  & 172,87 & 167,47 & 5,39 & 4795,39 & 0,82 & 3,08 \\
+%\hline
+%Summe Pumpen &  &  &  & 1,69 & 0,20 & 1,54 & 0,34 & 1,68 & 0,76 & 0,23 \\
+%\hline
+%Kondensator (80) &  &  &  &  & 12,42 & 9,56 & 2,86 &  & diss. & 1,97 \\
+%\hline
+%SUMME Drossel &  &  &  &  &  &  & 0,16 &  & diss. & 0,11 \\
+%\hline
+%\end{tabular}  
+
+%\end{table}
+
+\subsection{Wirkungsgrad der Gesamtanlage}
+Die Wirkungsgrade der Gesamtanlagen unterscheiden sich nur in einem Punkt. In beiden Versionen, den Wirkungsgrad zu berechnen, kommt die Variable des exergetischen Aufwandes vor. Dieser berechnet sich 
+wie in Gleichung (\ref{ex.aufwand}) erkennbar, aus dem resultierenden Massenstrom des Brennstoffs, der wiederum von der übertragenen Wärmemenge über die Systemgrenze abhängt. Da in den drei simulierten Prozessen jeweils unterschiedliche Wärmemengen übertragen werden, unterscheiden sie sich nur dort. 
+Wird der resultierende Massenstrom des Brennstoffs für den Prozess nach Lojewski berechnet, ergibt sich:
+\begin{align} \begin{split}
+     \dot{m}_{\n{Brennstoff, Lojewski}} \ &=  \frac{\n{Aufwand}}{\n{Heizwert\,der\,Kohle}}
+     \\ &= \frac{\sum\limits_{\n{j}}\dot{Q}_{\n{j}}}{\n{LHV}} 
+    = \frac{630,94\,\si{MW}}{27,6\,\si{MJ/kg}}
+    = 22,86\,\si{kg/s} \end{split}
+\end{align}
+Da der Brennstoff immer der gleiche ist, um die Prozesse miteinander vergleichen zu können, ist der Heizwert der Kohle immer 27,6\,\si{MW}. Damit ergeben sich folgende Massenströme des Brennstoffs, wie in der Tabelle \ref{tab.ges} dargestellt.
+\begin{table}[htbp]
+\caption{Exergetische Berechnung der Gesamtwirkungsgrade }
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+ & & \multicolumn{1}{l|}{Lojewski} & \multicolumn{1}{l|}{Collier} & \multicolumn{1}{l|}{Angelino} \\ \hline
+$\sum\limits_{\n{j}}\dot{Q}_{\n{j}}$ & [MW] & 630,94 & 664,06 & 595,66 \\ 
+\hline
+$\dot{m}_{\n{Brennstoff}}$ & [kg/s] & 22,86 & 24,06 & 21,58 \\
+\hline
+$\sum\limits_{\n{j}}\dot{E}_{\n{D,j}}$ & [MW] & 154,48 & 193,62 & 125,55 \\ 
+\hline
+$\dot{E}_{\n{F}}$ & [MW] & 712,23 & 672,36 & 749,33 \\ 
+\hline
+$\varepsilon_{\n{ges,1}}$ & [-] & 0,47 & 0,44 & 0,48 \\ 
+\hline
+$\varepsilon_{\n{ges,2}}$ & [-] & 0,44 & 0,42 & 0,47 \\ 
+\hline
+$\eta$ & [-] &0,50&0,48&0,53\\
+\hline
+\end{tabular}
+\label{tab.gesw}
+\end{center}
+
+\label{tab.ges}
+\end{table}
+
+Mit diesen Werten ergibt sich der exergetische Aufwand zu:
+\begin{align}
+     \dot{E}_{\n{F, Lojewski}} \ &= \ \dot{m}_{\n{Brennstoff}}\cdot\n{e^{CH}} 
+     = 22,86\,\si{kg/s} \cdot 31,2\,\si{MJ/kg} %achtung fehler !!!
+     = 713,23\,\si{MW}
+\end{align}
+
+Um im Folgenden die Wirkungsgrade berechnen zu können, wird festgestellt, wie groß die Exergieverlustströme $\dot{E}_{\n{L}}$ über die Systemgrenzen sind. 
+
+\begin{align}
+     \dot{E}_{\n{L}} \ &= \ \left(\frac{h_{\n{aus}}-h_{\n{0}}}{s_{\n{aus}}-s_{\n{0}}}\right) \cdot T_{\n{0}} 
+     = \left(\frac{-2194,18\,\si{kJ/kg}+2804,05\,\si{kJ/kg}}{7,7327\,\si{kJ/kg.K}-6,3987\,\si{kJ/kg.K}}\right) \cdot 288,15\,\si{K}
+     = 225,48\,\si{MW}
+\end{align}
+
+Wird mit dem exergetischen Aufwand der Wirkungsgrad mit der ersten Version berechnet, ergibt sich folgender Wirkungsgrad für Lojewski:
+
+\begin{align}
+\varepsilon_{\n{ges,1, Lojewski}} \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} 
+  = 1- \left(\frac{\sum\limits_{\n{j}}\dot{E}_{\n{D,j}}+\sum\limits_{\n{j}}\dot{E}_{\n{L,j}}}{\dot{E}_{\n{F}}}\right) 
+  \\&= 1-\left(\frac{154,48\,\si{MW} + 225,48\,\si{MW}}{713,23\,\si{MW}}\right)
+  = 0,47 
+\end{align}
+
+
+und nach der zweiten Version:
+
+\begin{align}
+\varepsilon_{\n{ges,2,Lojewski}} \ &= \ \frac{\n{Nutzen}}{\n{Aufwand}} 
+= \ \frac{\n{Nettoleistung}}{\n{exergetischen\,Aufwand}} \ 
+\\&=\ \frac{\sum{\dot{W}_{\n{el}}}}{\dot{E}_{\n{F}}}
+=\frac{316,1\,\si{MW}}{713,23\,\si{MW}}
+\\&=44,3\%
+\end{align}
+
+
+Alle Werte für die anderen Prozesse sind in der Tabelle \ref{tab.ges} dargestellt. 
+
+\section{Energetischer Gesamtwirkungsgrad}
+Der energetische Gesamtwirkungsgrad der Anlage errechnet sich wie in Gleichung \ref{eq.Carnot,r} dargestellt. Exemplarisch wird hier der Gesamtwirkungsgrad der Anlage von Lojewski berechnet.
+%%% Achtung: Werte von lo noch einsetzten !!!
+\begin{align}
+     \eta_{\n{Lojewski}} \ &= \frac{\dot{W}_\n{net}}{\dot{Q}_\n{in}}\ = \frac{\dot{W}_\n{net}}{\dot{m}_\n{Brennstoff} \cdot LHV }= \frac{316,1\,\si{MW}}{595,66\,\si{MW}} = 53,1\%
+\end{align}
